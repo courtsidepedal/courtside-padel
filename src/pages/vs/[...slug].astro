@@ -1,0 +1,285 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CourtLine from '../../components/CourtLine.astro';
+import AffiliateButton from '../../components/AffiliateButton.astro';
+
+export async function getStaticPaths() {
+  const comparisons = await getCollection('comparisons', ({ data }) => !data.draft);
+  return comparisons.map((cmp) => ({
+    params: { slug: cmp.id },
+    props: { cmp },
+  }));
+}
+
+const { cmp } = Astro.props;
+const { Content } = await render(cmp);
+
+const racketA = await getEntry(cmp.data.racketA);
+const racketB = await getEntry(cmp.data.racketB);
+
+const specLabels = [
+  { key: 'price', label: 'Price' },
+  { key: 'weight', label: 'Weight' },
+  { key: 'balance', label: 'Balance' },
+  { key: 'shape', label: 'Shape' },
+  { key: 'level', label: 'Level' },
+  { key: 'bestFor', label: 'Best for' },
+] as const;
+---
+
+<BaseLayout
+  title={cmp.data.metaTitle ?? cmp.data.title}
+  description={cmp.data.metaDescription}
+  image={racketA?.data.image}
+>
+  <article class="wrap comparison">
+    <header class="cmp-head">
+      <p class="eyebrow">Head to head</p>
+      <h1>{cmp.data.title}</h1>
+    </header>
+
+    <div class="cmp-images">
+      <div class="cmp-image">
+        <img src={racketA?.data.image} alt={racketA?.data.title} />
+        <p class="cmp-image-label">{racketA?.data.title}</p>
+      </div>
+      <div class="cmp-vs">VS</div>
+      <div class="cmp-image">
+        <img src={racketB?.data.image} alt={racketB?.data.title} />
+        <p class="cmp-image-label">{racketB?.data.title}</p>
+      </div>
+    </div>
+
+    <CourtLine />
+
+    <div class="spec-compare">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Spec</th>
+            <th scope="col">{racketA?.data.title}</th>
+            <th scope="col">{racketB?.data.title}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {specLabels.map(({ key, label }) => (
+            <tr>
+              <th scope="row">{label}</th>
+              <td>{(racketA?.data as any)?.[key] ?? '—'}</td>
+              <td>{(racketB?.data as any)?.[key] ?? '—'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <CourtLine />
+
+    <section class="verdicts">
+      <p class="eyebrow">Verdict by player type</p>
+      <div class="verdict-list">
+        {cmp.data.verdicts.map((v) => (
+          <div class="verdict-row">
+            <div class="verdict-player">{v.playerType}</div>
+            <div class="verdict-winner">
+              Winner: {v.winner === 'A' ? racketA?.data.title : v.winner === 'B' ? racketB?.data.title : 'Tie'}
+            </div>
+            <p class="verdict-note">{v.note}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <div class="cmp-ctas">
+      {racketA && (
+        <div>
+          <p class="cta-label">{racketA.data.title}</p>
+          <AffiliateButton
+            retailer={racketA.data.retailer}
+            productPath={racketA.data.retailerProductPath}
+            price={racketA.data.price}
+          />
+        </div>
+      )}
+      {racketB && (
+        <div>
+          <p class="cta-label">{racketB.data.title}</p>
+          <AffiliateButton
+            retailer={racketB.data.retailer}
+            productPath={racketB.data.retailerProductPath}
+            price={racketB.data.price}
+          />
+        </div>
+      )}
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .comparison {
+    padding: 48px var(--gutter) 72px;
+  }
+
+  .cmp-head {
+    max-width: 720px;
+    margin-bottom: 32px;
+  }
+
+  .cmp-head h1 {
+    font-family: var(--font-display);
+    font-size: 44px;
+    line-height: 1.05;
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+
+  .cmp-images {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .cmp-image {
+    background: var(--charcoal);
+  }
+
+  .cmp-image img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+  }
+
+  .cmp-image-label {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .cmp-vs {
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--court);
+  }
+
+  .spec-compare {
+    border: 1px solid var(--line);
+    background: #fff;
+    overflow-x: auto;
+  }
+
+  .spec-compare table {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    min-width: 480px;
+  }
+
+  .spec-compare th,
+  .spec-compare td {
+    padding: 12px 16px;
+    text-align: left;
+    border-top: 1px solid var(--line);
+  }
+
+  .spec-compare thead th {
+    border-top: none;
+    color: var(--court);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 11px;
+  }
+
+  .spec-compare tbody th {
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .verdicts {
+    margin: 40px 0;
+  }
+
+  .verdict-list {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .verdict-row {
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 18px 20px;
+  }
+
+  .verdict-player {
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .verdict-winner {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--court);
+    margin: 6px 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .verdict-note {
+    font-size: 14px;
+    color: var(--muted-2);
+  }
+
+  .prose {
+    max-width: 720px;
+    margin: 0 auto 40px;
+  }
+
+  .prose :global(h2) {
+    font-family: var(--font-display);
+    font-size: 26px;
+    text-transform: uppercase;
+    margin: 28px 0 14px;
+  }
+
+  .prose :global(p) {
+    margin-bottom: 16px;
+    font-size: 16px;
+  }
+
+  .cmp-ctas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .cta-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 700px) {
+    .cmp-images {
+      grid-template-columns: 1fr;
+    }
+
+    .cmp-vs {
+      text-align: center;
+    }
+
+    .cmp-ctas {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

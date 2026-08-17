@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Padel Site Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#171412;
+    --court:#E8532B;
+    --paper:#FAF8F5;
+    --charcoal:#232019;
+    --line:#E5DFD4;
+    --ball:#E8C93A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* ---- Court-line divider: the signature element ---- */
+  .court-line{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 auto;
+    width:100%;
+    padding:0 48px;
+  }
+  .court-line .seg{
+    height:4px;
+    background:var(--ink);
+  }
+  .court-line .seg.long{flex:1;}
+  .court-line .seg.short{width:36px;background:var(--court);}
+  .court-line .dot{width:8px;height:8px;border-radius:50%;background:var(--court);}
+
+  /* ---- Nav ---- */
+  nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:28px 48px;
+  }
+  .logo{
+    font-family:'Anton',sans-serif;
+    font-size:24px;
+    letter-spacing:0.5px;
+  }
+  .logo span{color:var(--court);}
+  .nav-links{display:flex;gap:32px;font-size:14px;font-weight:600;}
+  .nav-cta{
+    background:var(--ink);
+    color:var(--paper);
+    padding:10px 20px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.3px;
+  }
+
+  /* ---- Hero ---- */
+  .hero{
+    padding:72px 48px 56px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-inner{
+    max-width:760px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    font-weight:500;
+    color:var(--court);
+    text-transform:uppercase;
+    letter-spacing:2px;
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:'Anton',sans-serif;
+    font-size:76px;
+    line-height:0.94;
+    letter-spacing:-0.5px;
+    text-transform:uppercase;
+  }
+  h1 .accent{color:var(--court);}
+  .hero p{
+    font-size:18px;
+    color:#4a463f;
+    max-width:520px;
+    margin:24px 0 32px;
+  }
+  .hero-ctas{display:flex;gap:16px;align-items:center;}
+  .btn-primary{
+    background:var(--court);
+    color:var(--paper);
+    padding:16px 28px;
+    font-weight:700;
+    font-size:15px;
+  }
+  .btn-secondary{
+    padding:16px 8px;
+    font-weight:700;
+    font-size:15px;
+    border-bottom:2px solid var(--ink);
+  }
+
+  /* corner court graphic */
+  .court-graphic{
+    position:absolute;
+    top:0; right:0;
+    width:420px; height:100%;
+    opacity:0.9;
+  }
+
+  /* ---- Section wrapper ---- */
+  section{padding:56px 48px;}
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:32px;
+  }
+  .section-head h2{
+    font-family:'Anton',sans-serif;
+    font-size:34px;
+    text-transform:uppercase;
+  }
+  .section-head .see-all{
+    font-size:13px;
+    font-weight:700;
+    color:var(--court);
+    border-bottom:2px solid var(--court);
+    padding-bottom:2px;
+  }
+
+  /* ---- Racket cards ---- */
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .card{
+    background:#fff;
+    border:1px solid var(--line);
+  }
+  .card-img{
+    height:180px;
+    background:var(--charcoal);
+    display:flex;align-items:center;justify-content:center;
+    color:#7a766c;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    position:relative;
+  }
+  .rank-badge{
+    position:absolute;
+    top:12px;left:12px;
+    background:var(--ball);
+    color:var(--ink);
+    font-family:'Anton',sans-serif;
+    font-size:13px;
+    width:28px;height:28px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .card-body{padding:20px;}
+  .card-cat{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--court);
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-bottom:8px;
+  }
+  .card-body h3{font-size:19px;margin-bottom:10px;}
+  .spec-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    color:#6b675e;
+    padding:6px 0;
+    border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace;
+  }
+  .spec-row span:last-child{color:var(--ink);font-weight:500;}
+
+  /* ---- Guides strip ---- */
+  .guides{
+    display:grid;
+    grid-template-columns:1.1fr 1fr 1fr;
+    gap:24px;
+  }
+  .guide-card{
+    background:var(--ink);
+    color:var(--paper);
+    padding:28px;
+    min-height:220px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .guide-card.alt{background:var(--court);}
+  .guide-tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    opacity:0.7;
+  }
+  .guide-card h3{
+    font-family:'Anton',sans-serif;
+    font-size:24px;
+    line-height:1.05;
+    text-transform:uppercase;
+    margin-top:16px;
+  }
+  .guide-arrow{
+    margin-top:20px;
+    font-size:14px;
+    font-weight:700;
+  }
+
+  /* ---- Footer ---- */
+  footer{
+    padding:40px 48px;
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    color:#8a8578;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">COURTSIDE<span>PADEL</span></div>
+  <div class="nav-links">
+    <a>Rackets</a><a>Shoes</a><a>Guides</a><a>Vs</a>
+  </div>
+  <div class="nav-cta">Find your racket</div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Independent padel gear reviews</div>
+    <h1>Stop guessing.<br>Start <span class="accent">winning</span> the point.</h1>
+    <p>We test rackets, shoes, and gear against real players of every level, so you don't have to gamble €150 on a hunch.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary">See top rackets 2026</a>
+      <a class="btn-secondary">Racket quiz &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<div class="court-line">
+  <div class="seg short"></div>
+  <div class="dot"></div>
+  <div class="seg long"></div>
+</div>
+
+<section>
+  <div class="section-head">
+    <h2>Top rated rackets</h2>
+    <div class="see-all">View full rankings</div>
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-img">RACKET IMAGE<div class="rank-badge">1</div></div>
+      <div class="card-body">
+        <div class="card-cat">Power &middot; Advanced</div>
+        <h3>Bullpadel Vertex 04</h3>
+        <div class="spec-row"><span>Weight</span><span>365-375g</span></div>
+        <div class="spec-row"><span>Balance</span><span>High</span></div>
+        <div class="spec-row"><span>Best for</span><span>Aggressive players</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">RACKET IMAGE<div class="rank-badge">2</div></div>
+      <div class="card-body">
+        <div class="card-cat">Control &middot; All levels</div>
+        <h3>Head Motion Pro</h3>
+        <div class="spec-row"><span>Weight</span><span>355-365g</span></div>
+        <div class="spec-row"><span>Balance</span><span>Medium</span></div>
+        <div class="spec-row"><span>Best for</span><span>All-round play</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">RACKET IMAGE<div class="rank-badge">3</div></div>
+      <div class="card-body">
+        <div class="card-cat">Beginner &middot; Comfort</div>
+        <h3>Nox AT10 Genius</h3>
+        <div class="spec-row"><span>Weight</span><span>350-360g</span></div>
+        <div class="spec-row"><span>Balance</span><span>Low</span></div>
+        <div class="spec-row"><span>Best for</span><span>New players</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="court-line">
+  <div class="seg short"></div>
+  <div class="dot"></div>
+  <div class="seg long"></div>
+</div>
+
+<section>
+  <div class="section-head">
+    <h2>Start here</h2>
+  </div>
+  <div class="guides">
+    <div class="guide-card">
+      <div class="guide-tag">Beginner guide</div>
+      <h3>How to choose your first racket without wasting money</h3>
+      <div class="guide-arrow">Read guide &rarr;</div>
+    </div>
+    <div class="guide-card alt">
+      <div class="guide-tag">Head to head</div>
+      <h3>Bullpadel vs Head: which brand actually suits you</h3>
+      <div class="guide-arrow">Compare &rarr;</div>
+    </div>
+    <div class="guide-card">
+      <div class="guide-tag">Care</div>
+      <h3>Racket care: what actually extends its life</h3>
+      <div class="guide-arrow">Read guide &rarr;</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>&copy; 2026 Courtside Padel &mdash; independent reviews, no manufacturer sponsorship</div>
+  <div>About &middot; Contact &middot; Affiliate disclosure</div>
+</footer>
+
+</body>
+</html>

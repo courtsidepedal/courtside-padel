@@ -1,0 +1,121 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CourtLine from '../../components/CourtLine.astro';
+
+const guides = (await getCollection('guides', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<BaseLayout
+  title="All Guides"
+  description="Padel how-to guides — choosing your first racket, technique basics, gear care, and more."
+>
+  <header class="hub-head wrap">
+    <p class="eyebrow">Learn</p>
+    <h1>All guides</h1>
+    <p class="hub-sub">Everything you need to buy and maintain gear with confidence.</p>
+  </header>
+
+  <CourtLine />
+
+  <section class="wrap">
+    {guides.length > 0 ? (
+      <ul class="guide-list">
+        {guides.map((guide) => (
+          <li>
+            <a href={`/guides/${guide.id}/`}>
+              <span class="guide-list-tag">{guide.data.tag}</span>
+              <span class="guide-list-title">{guide.data.title}</span>
+              <span class="guide-list-excerpt">{guide.data.excerpt}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="empty-note">No guides published yet.</p>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .hub-head {
+    padding: 48px var(--gutter) 0;
+  }
+
+  .hub-head h1 {
+    font-family: var(--font-display);
+    font-size: 48px;
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+
+  .hub-sub {
+    color: var(--muted-2);
+    margin-top: 12px;
+    font-size: 16px;
+  }
+
+  section {
+    padding: 48px var(--gutter) 72px;
+  }
+
+  .guide-list {
+    max-width: 760px;
+  }
+
+  .guide-list li {
+    border-top: 1px solid var(--line);
+  }
+
+  .guide-list li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .guide-list a {
+    display: block;
+    padding: 24px 0;
+  }
+
+  .guide-list a:hover .guide-list-title {
+    color: var(--court);
+  }
+
+  .guide-list-tag {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--court);
+    margin-bottom: 8px;
+  }
+
+  .guide-list-title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .guide-list-excerpt {
+    display: block;
+    color: var(--muted-2);
+    font-size: 15px;
+  }
+
+  .empty-note {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+    border: 1px dashed var(--line);
+    padding: 24px;
+  }
+
+  @media (max-width: 620px) {
+    .hub-head h1 {
+      font-size: 36px;
+    }
+  }
+</style>

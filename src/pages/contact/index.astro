@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CourtLine from '../../components/CourtLine.astro';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with the Courtside Padel team."
+>
+  <header class="page-head wrap">
+    <p class="eyebrow">Contact</p>
+    <h1>Get in touch</h1>
+  </header>
+
+  <CourtLine />
+
+  <section class="wrap prose">
+    <p>
+      For gear questions, partnership enquiries, or corrections, email us at
+      <a href="mailto:hello@courtsidepadel.com">hello@courtsidepadel.com</a>.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding: 48px var(--gutter) 0;
+  }
+
+  .page-head h1 {
+    font-family: var(--font-display);
+    font-size: 40px;
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+
+  .prose {
+    padding: 48px var(--gutter) 72px;
+    max-width: 720px;
+  }
+
+  .prose p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .prose a {
+    color: var(--court);
+    text-decoration: underline;
+  }
+</style>

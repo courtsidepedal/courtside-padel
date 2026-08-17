@@ -1,0 +1,146 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CourtLine from '../../components/CourtLine.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
+
+export async function getStaticPaths() {
+  const guides = await getCollection('guides', ({ data }) => !data.draft);
+  return guides.map((guide) => ({
+    params: { slug: guide.id },
+    props: { guide },
+  }));
+}
+
+const { guide } = Astro.props;
+const { Content, headings } = await render(guide);
+---
+
+<BaseLayout
+  title={guide.data.metaTitle ?? guide.data.title}
+  description={guide.data.metaDescription}
+  image={guide.data.image}
+>
+  <article class="wrap guide">
+    <header class="guide-head">
+      <p class="eyebrow">{guide.data.tag}</p>
+      <h1>{guide.data.title}</h1>
+      <p class="excerpt">{guide.data.excerpt}</p>
+    </header>
+
+    {guide.data.image && (
+      <div class="guide-hero-image">
+        <img src={guide.data.image} alt={guide.data.imageAlt ?? guide.data.title} />
+      </div>
+    )}
+
+    <CourtLine />
+
+    <div class="guide-layout">
+      <aside class="guide-toc">
+        <TableOfContents headings={headings} />
+      </aside>
+      <div class="prose">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .guide {
+    padding: 48px var(--gutter) 72px;
+  }
+
+  .guide-head {
+    max-width: 720px;
+    margin: 0 auto 32px;
+  }
+
+  .guide-head h1 {
+    font-family: var(--font-display);
+    font-size: 46px;
+    line-height: 1.05;
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+
+  .excerpt {
+    font-size: 17px;
+    color: var(--muted-2);
+    margin-top: 16px;
+    max-width: 600px;
+  }
+
+  .guide-hero-image {
+    max-width: 900px;
+    margin: 0 auto 40px;
+    background: var(--charcoal);
+  }
+
+  .guide-hero-image img {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+  }
+
+  .guide-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 48px;
+    max-width: 900px;
+    margin: 40px auto 0;
+    align-items: start;
+  }
+
+  .guide-toc {
+    position: sticky;
+    top: 24px;
+  }
+
+  .prose :global(h2) {
+    font-family: var(--font-display);
+    font-size: 28px;
+    text-transform: uppercase;
+    margin: 36px 0 16px;
+    scroll-margin-top: 24px;
+  }
+
+  .prose :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .prose :global(p) {
+    margin-bottom: 16px;
+    font-size: 16px;
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin: 0 0 16px 20px;
+    list-style: disc;
+  }
+
+  .prose :global(ol) {
+    list-style: decimal;
+  }
+
+  .prose :global(a) {
+    color: var(--court);
+    text-decoration: underline;
+  }
+
+  @media (max-width: 760px) {
+    .guide-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .guide-toc {
+      position: static;
+    }
+
+    .guide-head h1 {
+      font-size: 34px;
+    }
+  }
+</style>

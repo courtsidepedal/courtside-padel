@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CourtLine from '../../components/CourtLine.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="Courtside Padel is an independent padel gear review site — no manufacturer sponsorship, every racket and shoe tested hands-on."
+>
+  <header class="page-head wrap">
+    <p class="eyebrow">About</p>
+    <h1>Independent, hands-on, no sponsorship</h1>
+  </header>
+
+  <CourtLine />
+
+  <section class="wrap prose">
+    <p>
+      Courtside Padel tests padel rackets, shoes, and gear against real players of every
+      level — beginner through advanced — so you don't have to gamble on a hunch before
+      you buy.
+    </p>
+    <p>
+      We earn a commission when you buy through some of the links on this site, at no
+      extra cost to you. That never changes what we recommend — see our
+      <a href="/affiliate-disclosure/">affiliate disclosure</a> for the full detail.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding: 48px var(--gutter) 0;
+  }
+
+  .page-head h1 {
+    font-family: var(--font-display);
+    font-size: 40px;
+    text-transform: uppercase;
+    margin-top: 12px;
+    max-width: 700px;
+  }
+
+  .prose {
+    padding: 48px var(--gutter) 72px;
+    max-width: 720px;
+  }
+
+  .prose p {
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .prose a {
+    color: var(--court);
+    text-decoration: underline;
+  }
+</style>

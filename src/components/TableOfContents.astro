@@ -1,0 +1,64 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+// Only show top-level headings (h2) to keep the TOC scannable
+const items = headings.filter((h) => h.depth === 2);
+---
+
+{items.length > 1 && (
+  <nav class="toc" aria-label="Table of contents">
+    <div class="toc-title">In this guide</div>
+    <ol>
+      {items.map((h) => (
+        <li><a href={`#${h.slug}`}>{h.text}</a></li>
+      ))}
+    </ol>
+  </nav>
+)}
+
+<style>
+  .toc {
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 20px 24px;
+  }
+
+  .toc-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--court);
+    margin-bottom: 12px;
+  }
+
+  .toc ol {
+    counter-reset: toc;
+  }
+
+  .toc li {
+    counter-increment: toc;
+    font-size: 14px;
+    padding: 6px 0;
+  }
+
+  .toc li::before {
+    content: counter(toc) '.';
+    font-family: var(--font-mono);
+    color: var(--muted);
+    margin-right: 8px;
+  }
+
+  .toc a:hover {
+    color: var(--court);
+  }
+</style>

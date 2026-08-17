@@ -1,0 +1,46 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>&copy; {year} Courtside Padel — independent reviews, no manufacturer sponsorship</div>
+    <div class="footer-links">
+      <a href="/about/">About</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/contact/">Contact</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/affiliate-disclosure/">Affiliate disclosure</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding: 40px var(--gutter);
+    font-size: 12px;
+    color: var(--muted-3);
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 8px;
+  }
+
+  .footer-links a:hover {
+    color: var(--court);
+  }
+
+  @media (max-width: 560px) {
+    .footer-inner {
+      flex-direction: column;
+    }
+  }
+</style>

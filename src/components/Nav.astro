@@ -1,0 +1,132 @@
+---
+const links = [
+  { href: '/rackets/', label: 'Rackets' },
+  { href: '/shoes/', label: 'Shoes' },
+  { href: '/guides/', label: 'Guides' },
+  { href: '/vs/', label: 'Vs' },
+];
+---
+
+<nav class="site-nav">
+  <a href="/" class="logo">COURTSIDE<span>PADEL</span></a>
+
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" id="nav-toggle">
+    <span class="visually-hidden">Menu</span>
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+  </button>
+
+  <div class="nav-links" id="nav-links">
+    {links.map((link) => (
+      <a href={link.href}>{link.label}</a>
+    ))}
+    <a href="/rackets/" class="nav-cta">Find your racket</a>
+  </div>
+</nav>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+  toggle?.addEventListener('click', () => {
+    const open = links?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+</script>
+
+<style>
+  .site-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px var(--gutter);
+    max-width: var(--max-width);
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-size: 24px;
+    letter-spacing: 0.5px;
+  }
+
+  .logo span {
+    color: var(--court);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .nav-cta {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    transition: background 0.15s ease;
+  }
+
+  .nav-cta:hover {
+    background: var(--court);
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .nav-toggle-bar {
+    width: 22px;
+    height: 2px;
+    background: var(--ink);
+  }
+
+  @media (max-width: 760px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding: 8px var(--gutter) 20px;
+      z-index: 20;
+    }
+
+    .nav-links.is-open {
+      display: flex;
+    }
+
+    .nav-links a {
+      width: 100%;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-cta {
+      margin-top: 12px;
+      text-align: center;
+      border-bottom: none;
+    }
+  }
+</style>

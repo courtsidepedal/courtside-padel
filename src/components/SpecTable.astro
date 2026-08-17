@@ -1,0 +1,75 @@
+---
+interface Row {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  rows: Row[];
+  title?: string;
+}
+
+const { rows, title } = Astro.props;
+---
+
+<div class="spec-table">
+  {title && <div class="spec-table-title">{title}</div>}
+  <table>
+    <tbody>
+      {rows.map((row) => (
+        <tr>
+          <th scope="row">{row.label}</th>
+          <td>{row.value}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .spec-table {
+    border: 1px solid var(--line);
+    background: #fff;
+  }
+
+  .spec-table-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--court);
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  table {
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+
+  tr {
+    border-top: 1px solid var(--line);
+  }
+
+  tr:first-child {
+    border-top: none;
+  }
+
+  th,
+  td {
+    padding: 12px 20px;
+    text-align: left;
+    font-weight: 500;
+  }
+
+  th {
+    color: var(--muted);
+    width: 40%;
+    font-weight: 500;
+  }
+
+  td {
+    color: var(--ink);
+    font-weight: 600;
+  }
+</style>

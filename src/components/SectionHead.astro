@@ -1,0 +1,42 @@
+---
+interface Props {
+  title: string;
+  seeAllHref?: string;
+  seeAllLabel?: string;
+}
+
+const { title, seeAllHref, seeAllLabel = 'View all' } = Astro.props;
+---
+
+<div class="section-head">
+  <h2>{title}</h2>
+  {seeAllHref && (
+    <a class="see-all" href={seeAllHref}>{seeAllLabel}</a>
+  )}
+</div>
+
+<style>
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 32px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .section-head h2 {
+    font-family: var(--font-display);
+    font-size: 34px;
+    text-transform: uppercase;
+  }
+
+  .see-all {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--court);
+    border-bottom: 2px solid var(--court);
+    padding-bottom: 2px;
+    white-space: nowrap;
+  }
+</style>

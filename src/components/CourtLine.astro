@@ -1,0 +1,45 @@
+---
+// The signature recurring element from the brief: a thick black bar with
+// a short orange segment and a dot, echoing a padel court's service line.
+// Used between sections instead of generic spacing or numbered markers.
+---
+
+<div class="court-line" role="separator" aria-hidden="true">
+  <div class="seg short"></div>
+  <div class="dot"></div>
+  <div class="seg long"></div>
+</div>
+
+<style>
+  .court-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: var(--max-width);
+    padding: 0 var(--gutter);
+  }
+
+  .seg {
+    height: 4px;
+    background: var(--ink);
+  }
+
+  .seg.long {
+    flex: 1;
+  }
+
+  .seg.short {
+    width: 36px;
+    background: var(--court);
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--court);
+    flex-shrink: 0;
+  }
+</style>

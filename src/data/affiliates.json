@@ -1,0 +1,22 @@
+{
+  "retailers": [
+    {
+      "id": "padelnuestro",
+      "name": "PadelNuestro",
+      "baseUrl": "https://www.padelnuestro.com",
+      "affiliateQuery": "?aff=courtsidepadel"
+    },
+    {
+      "id": "casaspadel",
+      "name": "Casas Padel",
+      "baseUrl": "https://www.casaspadel.com",
+      "affiliateQuery": "?ref=courtsidepadel"
+    },
+    {
+      "id": "padelandhelp",
+      "name": "Padel And Help",
+      "baseUrl": "https://www.padelandhelp.com",
+      "affiliateQuery": "?utm_source=courtsidepadel"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CourtLine from '../../components/CourtLine.astro';
+---
+
+<BaseLayout
+  title="Affiliate Disclosure"
+  description="How Courtside Padel earns revenue through affiliate links, and how that does not affect our reviews."
+>
+  <header class="page-head wrap">
+    <p class="eyebrow">Affiliate disclosure</p>
+    <h1>How we make money</h1>
+  </header>
+
+  <CourtLine />
+
+  <section class="wrap prose">
+    <p>
+      Courtside Padel is reader-supported. When you click a "Check price" link on this
+      site and buy a product, we may earn a commission from the retailer, at no extra
+      cost to you. This is how we fund testing and keep the site running.
+    </p>
+    <p>
+      Commission never influences our rankings, verdicts, or which pros and cons we
+      list. We only recommend gear we'd genuinely tell a friend to buy, and no
+      manufacturer has ever paid for a placement on this site.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding: 48px var(--gutter) 0;
+  }
+
+  .page-head h1 {
+    font-family: var(--font-display);
+    font-size: 40px;
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+
+  .prose {
+    padding: 48px var(--gutter) 72px;
+    max-width: 720px;
+  }
+
+  .prose p {
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+</style>

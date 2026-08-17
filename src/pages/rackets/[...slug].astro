@@ -1,0 +1,217 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CourtLine from '../../components/CourtLine.astro';
+import SpecTable from '../../components/SpecTable.astro';
+import ProsCons from '../../components/ProsCons.astro';
+import AffiliateButton from '../../components/AffiliateButton.astro';
+import RacketCard from '../../components/RacketCard.astro';
+
+export async function getStaticPaths() {
+  const rackets = await getCollection('rackets', ({ data }) => !data.draft);
+  return rackets.map((racket) => ({
+    params: { slug: racket.id },
+    props: { racket },
+  }));
+}
+
+const { racket } = Astro.props;
+const { Content, headings } = await render(racket);
+
+const specRows = [
+  { label: 'Price', value: racket.data.price },
+  racket.data.weight && { label: 'Weight', value: racket.data.weight },
+  racket.data.balance && { label: 'Balance', value: racket.data.balance },
+  racket.data.shape && { label: 'Shape', value: racket.data.shape },
+  { label: 'Level', value: racket.data.level },
+  racket.data.bestFor && { label: 'Best for', value: racket.data.bestFor },
+].filter(Boolean) as { label: string; value: string }[];
+
+// Related comparisons, resolved
+let relatedComparisons: Awaited<ReturnType<typeof getEntry>>[] = [];
+if (racket.data.relatedComparisons?.length) {
+  relatedComparisons = await Promise.all(
+    racket.data.relatedComparisons.map((ref) => getEntry(ref))
+  );
+}
+---
+
+<BaseLayout
+  title={racket.data.metaTitle ?? racket.data.title}
+  description={racket.data.metaDescription}
+  image={racket.data.image}
+>
+  <article class="wrap review">
+    <header class="review-head">
+      <p class="eyebrow">{racket.data.category} &middot; {racket.data.level} review</p>
+      <h1>{racket.data.title}</h1>
+      <p class="brand">by {racket.data.brand}</p>
+    </header>
+
+    <div class="review-top">
+      <div class="review-image">
+        <img src={racket.data.image} alt={racket.data.imageAlt ?? racket.data.title} />
+      </div>
+      <div class="review-top-side">
+        <SpecTable rows={specRows} title="At a glance" />
+        <AffiliateButton
+          retailer={racket.data.retailer}
+          productPath={racket.data.retailerProductPath}
+          price={racket.data.price}
+        />
+      </div>
+    </div>
+
+    <CourtLine />
+
+    <div class="review-body">
+      <div class="prose">
+        <Content />
+      </div>
+
+      <div class="verdict-block">
+        <p class="eyebrow">Verdict</p>
+        <p class="verdict-text">{racket.data.verdict}</p>
+      </div>
+
+      <ProsCons pros={racket.data.prosCons.pros} cons={racket.data.prosCons.cons} />
+
+      <AffiliateButton
+        retailer={racket.data.retailer}
+        productPath={racket.data.retailerProductPath}
+        price={racket.data.price}
+      />
+    </div>
+
+    {relatedComparisons.length > 0 && (
+      <>
+        <CourtLine />
+        <section class="related">
+          <p class="eyebrow">Related comparisons</p>
+          <ul>
+            {relatedComparisons.map((cmp) => cmp && (
+              <li><a href={`/vs/${cmp.id}/`}>{cmp.data.title}</a></li>
+            ))}
+          </ul>
+        </section>
+      </>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .review {
+    padding: 48px var(--gutter) 72px;
+  }
+
+  .review-head {
+    max-width: 720px;
+    margin-bottom: 32px;
+  }
+
+  .review-head h1 {
+    font-family: var(--font-display);
+    font-size: 48px;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+
+  .brand {
+    color: var(--muted);
+    margin-top: 10px;
+    font-size: 15px;
+  }
+
+  .review-top {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+
+  .review-image {
+    background: var(--charcoal);
+    min-height: 320px;
+    display: flex;
+  }
+
+  .review-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .review-top-side {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .review-body {
+    max-width: 720px;
+    margin: 48px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .prose :global(h2) {
+    font-family: var(--font-display);
+    font-size: 28px;
+    text-transform: uppercase;
+    margin: 32px 0 16px;
+  }
+
+  .prose :global(p) {
+    margin-bottom: 16px;
+    font-size: 16px;
+  }
+
+  .prose :global(ul) {
+    margin: 0 0 16px 20px;
+    list-style: disc;
+  }
+
+  .verdict-block {
+    border-left: 4px solid var(--court);
+    padding: 4px 0 4px 20px;
+  }
+
+  .verdict-text {
+    font-size: 19px;
+    font-weight: 600;
+    margin-top: 8px;
+    line-height: 1.4;
+  }
+
+  .related {
+    padding: 0 0 48px;
+  }
+
+  .related ul {
+    margin-top: 12px;
+  }
+
+  .related li {
+    padding: 10px 0;
+    border-top: 1px solid var(--line);
+    font-weight: 600;
+  }
+
+  .related a:hover {
+    color: var(--court);
+  }
+
+  @media (max-width: 800px) {
+    .review-top {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .review-head h1 {
+      font-size: 34px;
+    }
+  }
+</style>

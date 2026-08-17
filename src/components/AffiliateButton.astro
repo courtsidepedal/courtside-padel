@@ -1,0 +1,52 @@
+---
+import { getAffiliateUrl, getRetailerName } from '../data/affiliateLink';
+
+interface Props {
+  retailer: string;
+  productPath: string;
+  price?: string;
+}
+
+const { retailer, productPath, price } = Astro.props;
+const url = getAffiliateUrl(retailer, productPath);
+const retailerName = getRetailerName(retailer);
+---
+
+<a
+  class="affiliate-btn"
+  href={url}
+  target="_blank"
+  rel="nofollow sponsored noopener"
+>
+  <span class="affiliate-btn-main">
+    Check price at {retailerName}
+  </span>
+  {price && <span class="affiliate-btn-price">{price}</span>}
+</a>
+
+<style>
+  .affiliate-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: var(--court);
+    color: var(--paper);
+    padding: 16px 24px;
+    font-weight: 700;
+    font-size: 15px;
+    width: 100%;
+    max-width: 380px;
+    transition: background 0.15s ease;
+  }
+
+  .affiliate-btn:hover {
+    background: var(--ink);
+  }
+
+  .affiliate-btn-price {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    opacity: 0.9;
+  }
+</style>

@@ -1,0 +1,199 @@
+backend:
+  name: github
+  # TODO: replace with the real "owner/repo" once the site is pushed to GitHub.
+  repo: your-github-username/courtside-padel
+  branch: main
+  # These two options point Decap CMS at the small OAuth handler in /api
+  # (see api/auth.js and api/callback.js) instead of Netlify's login service,
+  # since this site is hosted on Vercel. See docs/cms-setup.md for the
+  # one-time GitHub OAuth App setup this requires.
+  base_url: https://courtsidepadel.com
+  auth_endpoint: api/auth
+
+# Shows a "Open on site" preview link and loads the real site styles in the
+# CMS preview pane so the owner sees formatted output, not raw markdown.
+site_url: https://courtsidepadel.com
+display_url: https://courtsidepadel.com
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+publish_mode: editorial_workflow
+
+collections:
+  # -------------------------------------------------------------------
+  # Rackets & gear reviews
+  # -------------------------------------------------------------------
+  - name: "rackets"
+    label: "Racket & Gear Reviews"
+    label_singular: "Review"
+    folder: "src/content/rackets"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{title}} — {{category}} · {{level}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Brand", name: "brand", widget: "string" }
+      - label: "Gear type"
+        name: "gearType"
+        widget: "select"
+        options: ["racket", "shoes", "bag", "accessory"]
+        default: "racket"
+      - label: "Category"
+        name: "category"
+        widget: "string"
+        hint: "Free text, e.g. Power, Control, Comfort, Beginner"
+      - label: "Level"
+        name: "level"
+        widget: "select"
+        options: ["Beginner", "Intermediate", "Advanced", "All levels"]
+      - label: "Homepage rank"
+        name: "homepageRank"
+        widget: "number"
+        required: false
+        hint: "Set 1, 2, or 3 to feature this in the homepage top-rated grid. Leave blank otherwise."
+      - { label: "Price (display)", name: "price", widget: "string", hint: "e.g. €289.90" }
+      - { label: "Product image", name: "image", widget: "image" }
+      - { label: "Image alt text", name: "imageAlt", widget: "string", required: false }
+      - { label: "Weight", name: "weight", widget: "string", required: false, hint: "e.g. 365-375g" }
+      - { label: "Balance", name: "balance", widget: "string", required: false, hint: "e.g. High / Medium / Low" }
+      - { label: "Shape", name: "shape", widget: "string", required: false, hint: "e.g. Diamond / Teardrop / Round" }
+      - { label: "Best for", name: "bestFor", widget: "string", required: false }
+      - label: "Pros & cons"
+        name: "prosCons"
+        widget: "object"
+        fields:
+          - { label: "Pros", name: "pros", widget: "list", field: { label: "Pro", name: "item", widget: "string" } }
+          - { label: "Cons", name: "cons", widget: "list", field: { label: "Con", name: "item", widget: "string" } }
+      - { label: "Verdict", name: "verdict", widget: "text", hint: "One or two sentence summary shown in a highlighted callout." }
+      - label: "Retailer"
+        name: "retailer"
+        widget: "select"
+        options: ["padelnuestro", "casaspadel", "padelandhelp"]
+        hint: "The retailer this product links to. Base URLs live in Settings → Affiliate Retailers — never hardcode a full URL here."
+      - label: "Retailer product path"
+        name: "retailerProductPath"
+        widget: "string"
+        hint: "Just the product's path on the retailer's site, e.g. /bullpadel-vertex-04"
+      - label: "Related comparisons"
+        name: "relatedComparisons"
+        widget: "relation"
+        collection: "comparisons"
+        search_fields: ["title"]
+        display_fields: ["title"]
+        value_field: "{{slug}}"
+        multiple: true
+        required: false
+      - { label: "Meta title (SEO)", name: "metaTitle", widget: "string", required: false, hint: "Leave blank to reuse the title above." }
+      - { label: "Meta description (SEO)", name: "metaDescription", widget: "text" }
+      - { label: "Publish date", name: "publishDate", widget: "datetime" }
+      - { label: "Updated date", name: "updatedDate", widget: "datetime", required: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false, hint: "Drafts never appear on the live site." }
+      - { label: "Review body", name: "body", widget: "markdown" }
+
+  # -------------------------------------------------------------------
+  # "X vs Y" comparisons
+  # -------------------------------------------------------------------
+  - name: "comparisons"
+    label: "Comparisons (X vs Y)"
+    label_singular: "Comparison"
+    folder: "src/content/comparisons"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{title}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string", hint: "e.g. Bullpadel Vertex 04 vs Head Motion Pro" }
+      - label: "Racket A"
+        name: "racketA"
+        widget: "relation"
+        collection: "rackets"
+        search_fields: ["title"]
+        display_fields: ["title"]
+        value_field: "{{slug}}"
+      - label: "Racket B"
+        name: "racketB"
+        widget: "relation"
+        collection: "rackets"
+        search_fields: ["title"]
+        display_fields: ["title"]
+        value_field: "{{slug}}"
+      - label: "Verdicts by player type"
+        name: "verdicts"
+        widget: "list"
+        fields:
+          - { label: "Player type", name: "playerType", widget: "string", hint: "e.g. Beginners, Aggressive attackers" }
+          - { label: "Winner", name: "winner", widget: "select", options: ["A", "B", "tie"] }
+          - { label: "Note", name: "note", widget: "text" }
+      - { label: "Meta title (SEO)", name: "metaTitle", widget: "string", required: false }
+      - { label: "Meta description (SEO)", name: "metaDescription", widget: "text" }
+      - { label: "Publish date", name: "publishDate", widget: "datetime" }
+      - { label: "Updated date", name: "updatedDate", widget: "datetime", required: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # -------------------------------------------------------------------
+  # How-to / guide articles
+  # -------------------------------------------------------------------
+  - name: "guides"
+    label: "Guides"
+    label_singular: "Guide"
+    folder: "src/content/guides"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{title}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Tag", name: "tag", widget: "string", hint: "e.g. Beginner guide, Care, Head to head" }
+      - { label: "Excerpt", name: "excerpt", widget: "text", hint: "One sentence shown under the title and used as a fallback SEO description." }
+      - { label: "Cover image", name: "image", widget: "image", required: false }
+      - { label: "Image alt text", name: "imageAlt", widget: "string", required: false }
+      - label: "Feature on homepage"
+        name: "homepageFeatured"
+        widget: "boolean"
+        default: false
+        hint: "Shows this guide in the homepage 'Start here' strip (max 3 shown, newest first)."
+      - label: "Featured card style"
+        name: "featuredStyle"
+        widget: "select"
+        options: ["default", "accent"]
+        default: "default"
+        hint: "'accent' gives the card the orange background — use sparingly, on one card at a time."
+      - { label: "Meta title (SEO)", name: "metaTitle", widget: "string", required: false }
+      - { label: "Meta description (SEO)", name: "metaDescription", widget: "text" }
+      - { label: "Publish date", name: "publishDate", widget: "datetime" }
+      - { label: "Updated date", name: "updatedDate", widget: "datetime", required: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        hint: "Use ## for section headings — they automatically build the table of contents on the page."
+
+  # -------------------------------------------------------------------
+  # Sitewide settings — centralized affiliate link config.
+  # Editing this updates every article that uses that retailer at once.
+  # -------------------------------------------------------------------
+  - name: "settings"
+    label: "Settings"
+    editor:
+      preview: false
+    files:
+      - label: "Affiliate Retailers"
+        name: "affiliates"
+        file: "src/data/affiliates.json"
+        description: "Change a retailer's base URL or tracking parameter here and it updates on every review and comparison that links to it — no need to edit individual articles."
+        fields:
+          - label: "Retailers"
+            name: "retailers"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "ID (used by articles, do not change once in use)", name: "id", widget: "string" }
+              - { label: "Display name", name: "name", widget: "string" }
+              - { label: "Base URL", name: "baseUrl", widget: "string", hint: "No trailing slash, e.g. https://www.padelnuestro.com" }
+              - { label: "Affiliate query string", name: "affiliateQuery", widget: "string", hint: "e.g. ?aff=courtsidepadel" }

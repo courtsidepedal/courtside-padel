@@ -1,0 +1,211 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CourtLine from '../components/CourtLine.astro';
+import SectionHead from '../components/SectionHead.astro';
+import RacketCard from '../components/RacketCard.astro';
+import GuideCard from '../components/GuideCard.astro';
+
+const allRackets = await getCollection('rackets', ({ data }) => !data.draft);
+const topRackets = allRackets
+  .filter((r) => r.data.homepageRank)
+  .sort((a, b) => (a.data.homepageRank ?? 99) - (b.data.homepageRank ?? 99))
+  .slice(0, 3);
+
+const allGuides = await getCollection('guides', ({ data }) => !data.draft);
+const featuredGuides = allGuides
+  .filter((g) => g.data.homepageFeatured)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title="Courtside Padel — Independent Padel Gear Reviews"
+  description="We test padel rackets, shoes, and gear against real players of every level, so you don't have to gamble on a hunch. Independent reviews, no manufacturer sponsorship."
+>
+  <div class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Independent padel gear reviews</p>
+      <h1>Stop guessing.<br />Start <span class="accent">winning</span> the point.</h1>
+      <p class="hero-sub">
+        We test rackets, shoes, and gear against real players of every level, so you
+        don't have to gamble €150 on a hunch.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="/rackets/">See top rackets 2026</a>
+        <a class="btn-secondary" href="/guides/">Racket quiz &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <CourtLine />
+
+  <section class="wrap">
+    <SectionHead title="Top rated rackets" seeAllHref="/rackets/" seeAllLabel="View full rankings" />
+    {topRackets.length > 0 ? (
+      <div class="card-grid">
+        {topRackets.map((racket) => (
+          <RacketCard
+            href={`/rackets/${racket.id}/`}
+            image={racket.data.image}
+            imageAlt={racket.data.imageAlt}
+            rank={racket.data.homepageRank}
+            category={racket.data.category}
+            level={racket.data.level}
+            title={racket.data.title}
+            weight={racket.data.weight}
+            balance={racket.data.balance}
+            bestFor={racket.data.bestFor}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="empty-note">
+        No ranked rackets yet — publish a racket review and set "Homepage rank" in the CMS
+        to feature it here.
+      </p>
+    )}
+  </section>
+
+  <CourtLine />
+
+  <section class="wrap">
+    <SectionHead title="Start here" />
+    {featuredGuides.length > 0 ? (
+      <div class="guides">
+        {featuredGuides.map((guide) => (
+          <GuideCard
+            href={`/guides/${guide.id}/`}
+            tag={guide.data.tag}
+            title={guide.data.title}
+            style={guide.data.featuredStyle}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="empty-note">
+        No featured guides yet — publish a guide and toggle "Feature on homepage" in the
+        CMS to show it here.
+      </p>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: 72px var(--gutter) 56px;
+    position: relative;
+    overflow: hidden;
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .hero-inner {
+    max-width: 760px;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: 76px;
+    line-height: 0.94;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    margin-top: 18px;
+  }
+
+  h1 .accent {
+    color: var(--court);
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--muted-2);
+    max-width: 520px;
+    margin: 24px 0 32px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--court);
+    color: var(--paper);
+    padding: 16px 28px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: background 0.15s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--ink);
+  }
+
+  .btn-secondary {
+    padding: 16px 8px;
+    font-weight: 700;
+    font-size: 15px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--court);
+    color: var(--court);
+  }
+
+  section {
+    padding: 56px var(--gutter);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .guides {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr;
+    gap: 24px;
+  }
+
+  .empty-note {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+    border: 1px dashed var(--line);
+    padding: 24px;
+  }
+
+  @media (max-width: 900px) {
+    h1 {
+      font-size: 56px;
+    }
+
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .guides {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 620px) {
+    h1 {
+      font-size: 42px;
+    }
+
+    .hero {
+      padding-top: 48px;
+    }
+
+    .card-grid,
+    .guides {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

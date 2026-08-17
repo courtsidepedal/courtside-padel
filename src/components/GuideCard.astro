@@ -1,0 +1,60 @@
+---
+interface Props {
+  href: string;
+  tag: string;
+  title: string;
+  style?: 'default' | 'accent';
+  ctaLabel?: string;
+}
+
+const { href, tag, title, style = 'default', ctaLabel = 'Read guide' } = Astro.props;
+---
+
+<a href={href} class={`guide-card ${style === 'accent' ? 'alt' : ''}`}>
+  <div class="guide-tag">{tag}</div>
+  <h3>{title}</h3>
+  <div class="guide-arrow">{ctaLabel} &rarr;</div>
+</a>
+
+<style>
+  .guide-card {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 28px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: opacity 0.15s ease;
+  }
+
+  .guide-card:hover {
+    opacity: 0.9;
+  }
+
+  .guide-card.alt {
+    background: var(--court);
+  }
+
+  .guide-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.7;
+  }
+
+  .guide-card h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    line-height: 1.05;
+    text-transform: uppercase;
+    margin-top: 16px;
+  }
+
+  .guide-arrow {
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+</style>
