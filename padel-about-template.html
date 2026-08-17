@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>About Page Template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#171412;--court:#E8532B;--paper:#FAF8F5;--charcoal:#232019;
+    --line:#E5DFD4;--ball:#E8C93A;--green:#2F6F4E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;}
+  a{color:inherit;text-decoration:none;}
+
+  .court-line{display:flex;align-items:center;gap:10px;padding:0 48px;}
+  .court-line .seg{height:4px;background:var(--ink);}
+  .court-line .seg.long{flex:1;}
+  .court-line .seg.short{width:36px;background:var(--court);}
+  .court-line .dot{width:8px;height:8px;border-radius:50%;background:var(--court);}
+
+  nav{display:flex;justify-content:space-between;align-items:center;padding:24px 48px;}
+  .logo{font-family:'Anton',sans-serif;font-size:22px;}
+  .logo span{color:var(--court);}
+
+  .about-hero{padding:40px 48px 32px;max-width:680px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--court);
+    text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;
+  }
+  h1{font-family:'Anton',sans-serif;font-size:44px;text-transform:uppercase;line-height:1;margin-bottom:18px;}
+  .about-hero p{font-size:17px;color:#3d3a34;}
+
+  section{padding:40px 48px;}
+  .section-narrow{max-width:640px;}
+
+  /* ---- Stats row ---- */
+  .stats-row{display:flex;gap:0;max-width:760px;}
+  .stat{flex:1;padding:24px 0;border-left:1px solid var(--line);padding-left:24px;}
+  .stat:first-child{border-left:none;padding-left:0;}
+  .stat .num{font-family:'Anton',sans-serif;font-size:36px;color:var(--court);}
+  .stat .label{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6b675e;text-transform:uppercase;margin-top:4px;}
+
+  /* ---- How we test ---- */
+  .test-steps{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:760px;}
+  .test-step{background:#fff;border:1px solid var(--line);padding:22px;}
+  .test-step .step-num{font-family:'Anton',sans-serif;font-size:20px;color:var(--ball);-webkit-text-stroke:1px var(--ink);margin-bottom:8px;}
+  .test-step h3{font-size:15px;margin-bottom:6px;}
+  .test-step p{font-size:13px;color:#4a463f;}
+
+  /* ---- Values / commitment box ---- */
+  .commitment{
+    background:var(--ink);color:var(--paper);padding:36px;max-width:760px;
+  }
+  .commitment h3{font-family:'Anton',sans-serif;font-size:20px;text-transform:uppercase;margin-bottom:12px;}
+  .commitment p{font-size:14px;opacity:0.85;margin-bottom:10px;}
+
+  footer{padding:32px 48px;font-size:12px;color:#8a8578;}
+</style>
+</head>
+<body>
+
+<nav><div class="logo">COURTSIDE<span>PADEL</span></div></nav>
+
+<div class="about-hero">
+  <div class="eyebrow">About us</div>
+  <h1>We hit rackets, so you don't have to gamble on one</h1>
+  <p>Courtside Padel started because we were tired of "best racket" articles that were clearly written by someone who'd never actually played padel — just reworded spec sheets and affiliate links with no real opinion behind them.</p>
+</div>
+
+<section>
+  <div class="stats-row">
+    <div class="stat"><div class="num">14</div><div class="label">Rackets tested</div></div>
+    <div class="stat"><div class="num">40+</div><div class="label">Hours of match play</div></div>
+    <div class="stat"><div class="num">0</div><div class="label">Manufacturer sponsorships</div></div>
+  </div>
+</section>
+
+<div class="court-line"><div class="seg short"></div><div class="dot"></div><div class="seg long"></div></div>
+
+<section>
+  <div class="section-narrow" style="margin-bottom:24px;">
+    <div class="eyebrow">How we test</div>
+    <h2 style="font-family:'Anton',sans-serif;font-size:26px;text-transform:uppercase;">Every racket earns its score</h2>
+  </div>
+  <div class="test-steps">
+    <div class="test-step"><div class="step-num">01</div><h3>Real match play</h3><p>Every racket is used in actual matches, not just a few practice swings, over a minimum two-week period.</p></div>
+    <div class="test-step"><div class="step-num">02</div><h3>Multiple skill levels</h3><p>Tested by players ranging from intermediate to advanced, so the review reflects more than one perspective.</p></div>
+    <div class="test-step"><div class="step-num">03</div><h3>Bought at retail price</h3><p>We purchase rackets ourselves wherever possible, the same way you would — no manufacturer loaner units.</p></div>
+    <div class="test-step"><div class="step-num">04</div><h3>Re-tested over time</h3><p>Scores get revisited as rackets wear in, not just judged on a first impression out of the box.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="commitment">
+    <h3>Our commitment</h3>
+    <p>We earn money through affiliate links — if you buy a racket through one of our links, we may get a small commission at no extra cost to you.</p>
+    <p>That commission never determines a score. We've given low scores to rackets from every major brand, including ones we're affiliated with. If a racket isn't good, we say so.</p>
+  </div>
+</section>
+
+<footer>&copy; 2026 Courtside Padel — independent reviews, no manufacturer sponsorship</footer>
+
+</body>
+</html>

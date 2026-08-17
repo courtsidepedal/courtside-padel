@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact Page Template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#171412;--court:#E8532B;--paper:#FAF8F5;--charcoal:#232019;--line:#E5DFD4;--ball:#E8C93A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;}
+  a{color:inherit;text-decoration:none;}
+
+  nav{display:flex;justify-content:space-between;align-items:center;padding:24px 48px;}
+  .logo{font-family:'Anton',sans-serif;font-size:22px;}
+  .logo span{color:var(--court);}
+
+  .contact-layout{
+    display:grid;grid-template-columns:1fr 1.2fr;gap:56px;
+    padding:32px 48px 60px;max-width:1000px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--court);
+    text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;
+  }
+  h1{font-family:'Anton',sans-serif;font-size:38px;text-transform:uppercase;line-height:1.05;margin-bottom:16px;}
+  .contact-info p{font-size:15px;color:#4a463f;margin-bottom:28px;max-width:380px;}
+
+  .contact-channels{display:flex;flex-direction:column;gap:16px;}
+  .channel{
+    background:#fff;border:1px solid var(--line);padding:18px 20px;
+  }
+  .channel .ch-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--court);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+  .channel .ch-value{font-size:15px;font-weight:600;}
+
+  /* ---- Form ---- */
+  .form-box{background:#fff;border:1px solid var(--line);padding:32px;}
+  .form-box h2{font-family:'Anton',sans-serif;font-size:20px;text-transform:uppercase;margin-bottom:20px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;color:#6b675e;margin-bottom:6px;}
+  .field input,.field select,.field textarea{
+    width:100%;border:1px solid var(--line);padding:12px;font-family:'Inter',sans-serif;font-size:14px;background:var(--paper);
+  }
+  .field textarea{min-height:120px;resize:vertical;}
+  .btn-submit{
+    background:var(--court);color:var(--paper);border:none;
+    padding:14px 28px;font-weight:700;font-size:14px;cursor:pointer;
+  }
+
+  footer{padding:32px 48px;font-size:12px;color:#8a8578;}
+</style>
+</head>
+<body>
+
+<nav><div class="logo">COURTSIDE<span>PADEL</span></div></nav>
+
+<div class="contact-layout">
+  <div class="contact-info">
+    <div class="eyebrow">Get in touch</div>
+    <h1>Questions, tips, or a racket we should test?</h1>
+    <p>We read everything, even if we can't reply to every message individually.</p>
+
+    <div class="contact-channels">
+      <div class="channel"><div class="ch-label">General inquiries</div><div class="ch-value">hello@courtsidepadel.com</div></div>
+      <div class="channel"><div class="ch-label">Brand & affiliate partnerships</div><div class="ch-value">partners@courtsidepadel.com</div></div>
+    </div>
+  </div>
+
+  <div class="form-box">
+    <h2>Send a message</h2>
+    <div class="field"><label>Name</label><input type="text" placeholder="Your name"></div>
+    <div class="field"><label>Email</label><input type="email" placeholder="you@example.com"></div>
+    <div class="field"><label>Topic</label>
+      <select><option>General question</option><option>Racket suggestion</option><option>Correction / feedback</option><option>Partnership inquiry</option></select>
+    </div>
+    <div class="field"><label>Message</label><textarea placeholder="What's on your mind?"></textarea></div>
+    <button class="btn-submit">Send message</button>
+  </div>
+</div>
+
+<footer>&copy; 2026 Courtside Padel — independent reviews, no manufacturer sponsorship</footer>
+
+</body>
+</html>
