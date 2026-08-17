@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Guide Article Template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#171412;--court:#E8532B;--paper:#FAF8F5;--charcoal:#232019;
+    --line:#E5DFD4;--ball:#E8C93A;--green:#2F6F4E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;}
+  a{color:inherit;}
+
+  .court-line{display:flex;align-items:center;gap:10px;padding:0 48px;}
+  .court-line .seg{height:4px;background:var(--ink);}
+  .court-line .seg.long{flex:1;}
+  .court-line .seg.short{width:36px;background:var(--court);}
+  .court-line .dot{width:8px;height:8px;border-radius:50%;background:var(--court);}
+
+  nav{display:flex;justify-content:space-between;align-items:center;padding:24px 48px;}
+  .logo{font-family:'Anton',sans-serif;font-size:22px;text-decoration:none;color:var(--ink);}
+  .logo span{color:var(--court);}
+  .breadcrumb{font-size:12px;color:#8a8578;padding:0 48px;font-family:'IBM Plex Mono',monospace;}
+  .breadcrumb a{color:var(--court);text-decoration:none;}
+
+  .article-layout{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:56px;
+    padding:32px 48px 60px;
+    max-width:1100px;
+  }
+
+  /* ---- Sticky TOC ---- */
+  .toc{position:sticky;top:24px;align-self:start;}
+  .toc-label{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;
+    letter-spacing:1px;color:var(--court);margin-bottom:12px;
+  }
+  .toc a{
+    display:block;font-size:13px;color:#4a463f;text-decoration:none;
+    padding:7px 0 7px 12px;border-left:2px solid var(--line);
+  }
+  .toc a.active{border-left-color:var(--court);color:var(--ink);font-weight:600;}
+
+  /* ---- Article body ---- */
+  .article-header .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--court);
+    text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;
+  }
+  h1{font-family:'Anton',sans-serif;font-size:38px;text-transform:uppercase;line-height:1.05;margin-bottom:16px;max-width:640px;}
+  .meta-row{
+    display:flex;gap:16px;align-items:center;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8a8578;
+    margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line);
+  }
+
+  .article-body{max-width:640px;font-size:16px;color:#2b2820;}
+  .article-body h2{
+    font-family:'Anton',sans-serif;font-size:24px;text-transform:uppercase;
+    margin:36px 0 14px;
+  }
+  .article-body p{margin-bottom:16px;}
+  .article-body ul{margin:0 0 16px 20px;}
+  .article-body li{margin-bottom:8px;}
+
+  /* Inline product callout - the internal link into money pages */
+  .inline-callout{
+    background:#fff;border:1px solid var(--line);border-left:4px solid var(--court);
+    padding:18px 20px;margin:24px 0;
+    display:flex;align-items:center;gap:16px;
+  }
+  .inline-callout .ic-img{width:56px;height:56px;background:var(--charcoal);flex-shrink:0;}
+  .inline-callout .ic-text{font-size:13px;}
+  .inline-callout .ic-text strong{display:block;font-size:14px;margin-bottom:2px;}
+  .inline-callout a.ic-link{
+    margin-left:auto;font-size:12px;font-weight:700;color:var(--court);
+    white-space:nowrap;text-decoration:none;
+  }
+
+  blockquote{
+    border-left:3px solid var(--ball);
+    padding:4px 0 4px 18px;margin:20px 0;
+    font-style:italic;color:#4a463f;
+  }
+
+  /* ---- Author box ---- */
+  .author-box{
+    display:flex;gap:14px;align-items:center;
+    margin-top:40px;padding-top:24px;border-top:1px solid var(--line);
+    max-width:640px;
+  }
+  .author-avatar{width:44px;height:44px;background:var(--charcoal);border-radius:50%;}
+  .author-box .name{font-size:13px;font-weight:700;}
+  .author-box .role{font-size:12px;color:#8a8578;}
+
+  footer{padding:32px 48px;font-size:12px;color:#8a8578;}
+</style>
+</head>
+<body>
+
+<nav><a class="logo">COURTSIDE<span>PADEL</span></a></nav>
+<div class="breadcrumb"><a>Home</a> / <a>Guides</a> / How to Choose Your First Racket</div>
+
+<div class="article-layout">
+  <div class="toc">
+    <div class="toc-label">On this page</div>
+    <a class="active">Why racket choice matters</a>
+    <a>Weight: the #1 factor</a>
+    <a>Shape explained</a>
+    <a>Balance for beginners</a>
+    <a>Our recommendation</a>
+  </div>
+
+  <div>
+    <div class="article-header">
+      <div class="eyebrow">Beginner guide</div>
+      <h1>How to Choose Your First Padel Racket Without Wasting Money</h1>
+      <div class="meta-row">
+        <span>8 min read</span><span>&middot;</span><span>Updated Aug 2026</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p>Most beginners buy the wrong racket — not because they pick a bad brand, but because they optimize for the wrong spec entirely. Here's what actually matters when you're starting out, in the order it actually matters.</p>
+
+      <h2>Why racket choice matters</h2>
+      <p>A racket built for advanced power players will punish you as a beginner — smaller sweet spot, harsher vibration, less forgiveness on off-center hits. The gear that pros use isn't the gear you should start with.</p>
+
+      <blockquote>The single biggest beginner mistake: buying the racket a pro uses instead of the racket built for your level.</blockquote>
+
+      <h2>Weight: the #1 factor</h2>
+      <p>Lighter rackets (355–365g) are easier to control and reduce arm fatigue while you're still building technique. Heavier rackets add power you don't need yet, at the cost of control you do.</p>
+
+      <div class="inline-callout">
+        <div class="ic-img"></div>
+        <div class="ic-text">
+          <strong>Nox AT10 Genius</strong>
+          Our top beginner pick — 358g, round shape, low balance
+        </div>
+        <a class="ic-link">Read review &rarr;</a>
+      </div>
+
+      <h2>Shape explained</h2>
+      <p>Round shapes have the biggest sweet spot and the most forgiveness — this is what you want starting out. Diamond shapes (built for power) come later, once your technique catches up.</p>
+
+      <h2>Balance for beginners</h2>
+      <p>Low or medium balance keeps the racket's weight closer to your hand, making it easier to react quickly and control your shots. High-balance, head-heavy rackets are a later upgrade, not a starting point.</p>
+
+      <h2>Our recommendation</h2>
+      <p>If you're buying your first racket, prioritize in this order: weight, then shape, then balance. Brand and price come last — several beginner-friendly rackets in the €80-130 range outperform expensive advanced rackets for someone just starting out.</p>
+    </div>
+
+    <div class="author-box">
+      <div class="author-avatar"></div>
+      <div>
+        <div class="name">Courtside Padel Team</div>
+        <div class="role">Independent gear testing</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>&copy; 2026 Courtside Padel — independent reviews, no manufacturer sponsorship</footer>
+
+</body>
+</html>

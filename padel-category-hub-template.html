@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Category Hub Template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#171412;--court:#E8532B;--paper:#FAF8F5;--charcoal:#232019;
+    --line:#E5DFD4;--ball:#E8C93A;--green:#2F6F4E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.55;}
+  a{color:inherit;text-decoration:none;}
+
+  .court-line{display:flex;align-items:center;gap:10px;padding:0 48px;}
+  .court-line .seg{height:4px;background:var(--ink);}
+  .court-line .seg.long{flex:1;}
+  .court-line .seg.short{width:36px;background:var(--court);}
+  .court-line .dot{width:8px;height:8px;border-radius:50%;background:var(--court);}
+
+  nav{display:flex;justify-content:space-between;align-items:center;padding:24px 48px;}
+  .logo{font-family:'Anton',sans-serif;font-size:22px;}
+  .logo span{color:var(--court);}
+  .breadcrumb{font-size:12px;color:#8a8578;padding:0 48px;font-family:'IBM Plex Mono',monospace;}
+  .breadcrumb a{color:var(--court);}
+
+  /* ---- Hub hero ---- */
+  .hub-hero{padding:32px 48px 24px;max-width:760px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--court);
+    text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;
+  }
+  h1{font-family:'Anton',sans-serif;font-size:44px;text-transform:uppercase;line-height:1;margin-bottom:14px;}
+  .hub-hero p{font-size:16px;color:#4a463f;}
+  .update-stamp{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:#a39e91;margin-top:14px;
+  }
+
+  /* ---- Filter bar ---- */
+  .filter-bar{
+    display:flex;gap:10px;padding:24px 48px;flex-wrap:wrap;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .filter-chip{
+    padding:8px 16px;font-size:13px;font-weight:600;
+    border:1px solid var(--line);background:#fff;
+  }
+  .filter-chip.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+
+  /* ---- Listing ---- */
+  section{padding:36px 48px;}
+  .listing{display:flex;flex-direction:column;gap:16px;max-width:900px;}
+  .list-row{
+    display:grid;
+    grid-template-columns:100px 1fr auto auto;
+    gap:20px;align-items:center;
+    background:#fff;border:1px solid var(--line);padding:16px 20px;
+  }
+  .list-row .rank{
+    font-family:'Anton',sans-serif;font-size:26px;color:var(--line);
+  }
+  .list-row.top .rank{color:var(--ball);-webkit-text-stroke:1px var(--ink);}
+  .list-img{width:70px;height:70px;background:var(--charcoal);}
+  .list-info h3{font-size:16px;margin-bottom:4px;}
+  .list-info .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--court);
+    text-transform:uppercase;letter-spacing:0.5px;
+  }
+  .list-score{
+    font-family:'Anton',sans-serif;font-size:18px;
+    background:var(--ink);color:var(--paper);
+    padding:6px 12px;
+  }
+  .list-cta{
+    background:var(--court);color:var(--paper);
+    padding:10px 18px;font-size:13px;font-weight:700;
+  }
+
+  /* ---- Buyer's guide callout ---- */
+  .guide-callout{
+    background:var(--ink);color:var(--paper);
+    padding:32px;max-width:900px;
+    display:flex;justify-content:space-between;align-items:center;
+    gap:24px;
+  }
+  .guide-callout h3{font-family:'Anton',sans-serif;font-size:20px;text-transform:uppercase;margin-bottom:8px;}
+  .guide-callout p{font-size:13px;opacity:0.8;max-width:420px;}
+  .guide-callout .btn-secondary{
+    border:1px solid var(--paper);padding:10px 20px;font-size:13px;font-weight:700;white-space:nowrap;
+  }
+
+  footer{padding:32px 48px;font-size:12px;color:#8a8578;}
+</style>
+</head>
+<body>
+
+<nav><div class="logo">COURTSIDE<span>PADEL</span></div></nav>
+<div class="breadcrumb"><a>Home</a> / Rackets</div>
+
+<div class="hub-hero">
+  <div class="eyebrow">Padel racket reviews</div>
+  <h1>Every racket we've actually tested</h1>
+  <p>No manufacturer sponsorships, no spec-sheet guessing — every racket here was hit for at least two weeks before we wrote a word.</p>
+  <div class="update-stamp">Last updated: August 2026 &middot; 14 rackets reviewed</div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-chip active">All (14)</div>
+  <div class="filter-chip">Power (5)</div>
+  <div class="filter-chip">Control (4)</div>
+  <div class="filter-chip">Beginner (3)</div>
+  <div class="filter-chip">All-round (2)</div>
+</div>
+
+<section>
+  <div class="listing">
+    <div class="list-row top">
+      <div class="rank">01</div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div class="list-img"></div>
+        <div class="list-info">
+          <h3>Bullpadel Vertex 04</h3>
+          <div class="tag">Power &middot; Advanced</div>
+        </div>
+      </div>
+      <div class="list-score">8.7</div>
+      <a class="list-cta">Read review</a>
+    </div>
+    <div class="list-row">
+      <div class="rank">02</div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div class="list-img"></div>
+        <div class="list-info">
+          <h3>Head Motion Pro</h3>
+          <div class="tag">Control &middot; All levels</div>
+        </div>
+      </div>
+      <div class="list-score">8.5</div>
+      <a class="list-cta">Read review</a>
+    </div>
+    <div class="list-row">
+      <div class="rank">03</div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div class="list-img"></div>
+        <div class="list-info">
+          <h3>Nox AT10 Genius</h3>
+          <div class="tag">Beginner &middot; Comfort</div>
+        </div>
+      </div>
+      <div class="list-score">8.2</div>
+      <a class="list-cta">Read review</a>
+    </div>
+    <div class="list-row">
+      <div class="rank">04</div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div class="list-img"></div>
+        <div class="list-info">
+          <h3>Adidas Metalbone</h3>
+          <div class="tag">Power &middot; Advanced</div>
+        </div>
+      </div>
+      <div class="list-score">8.1</div>
+      <a class="list-cta">Read review</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="guide-callout">
+    <div>
+      <h3>Not sure which category you need?</h3>
+      <p>Answer 4 quick questions about your playstyle and we'll point you to the right racket type.</p>
+    </div>
+    <a class="btn-secondary">Take the racket quiz &rarr;</a>
+  </div>
+</section>
+
+<footer>&copy; 2026 Courtside Padel — independent reviews, no manufacturer sponsorship</footer>
+
+</body>
+</html>
