@@ -50,6 +50,20 @@ browser, through the CMS — you never need to touch code or Git.
    (only the 3 most recent featured guides show there).
 4. Write the body using `##` headings — these automatically become the
    table of contents on the page.
+5. To link to a tested product partway through the guide (the boxed "Read
+   review" callout you'll have seen on other guides), put this on its own
+   line, by itself, wherever you want it to appear:
+
+   ```
+   {{callout: racket-slug}}
+   ```
+
+   The slug is whatever comes after `/rackets/` in that review's URL — for
+   example, `{{callout: nox-at10-genius}}` for
+   `courtsidepadel.com/rackets/nox-at10-genius/`. It pulls the product's
+   photo, name, and verdict automatically, so there's nothing else to fill
+   in. If you're not sure of the slug, open the review on the live site and
+   copy the last part of its URL.
 
 ## Updating an affiliate link sitewide
 
@@ -63,10 +77,19 @@ every article:
 
 ## About images
 
-Upload images at roughly 1600px wide if you can, and compress them first
-(a free tool like [squoosh.app](https://squoosh.app) takes 30 seconds). The
-site doesn't auto-compress uploaded images, so a smaller file means a
-faster-loading page.
+Upload any reasonably-sized photo — the site automatically resizes and
+compresses images wider than 1600px the next time it builds (usually within
+a minute or two of publishing), so you don't need to manually compress
+anything first. It won't ever make an image bigger or blurrier, only
+smaller and lighter. If you want to save yourself the wait, exporting at
+roughly 1600px wide before uploading has the same end result.
+
+## Sending or receiving contact form messages
+
+The Contact page form sends straight to your inbox via Formspree, not
+through the CMS — see `docs/cms-setup.md` for the one-time developer setup
+that connects it. If messages ever stop arriving, that's the first place
+to check, not the CMS.
 
 ## What happens after you click Publish
 

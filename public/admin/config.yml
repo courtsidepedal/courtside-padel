@@ -1,19 +1,21 @@
 backend:
   name: github
-  # TODO: replace with the real "owner/repo" once the site is pushed to GitHub.
-  repo: your-github-username/courtside-padel
+  repo: courtsidepedal/courtside-padel
   branch: main
   # These two options point Decap CMS at the small OAuth handler in /api
   # (see api/auth.js and api/callback.js) instead of Netlify's login service,
   # since this site is hosted on Vercel. See docs/cms-setup.md for the
   # one-time GitHub OAuth App setup this requires.
-  base_url: https://courtsidepadel.com
+  # TODO: once the custom domain is connected, update base_url, site_url,
+  # and display_url below (and the matching GitHub OAuth App callback URL)
+  # from the .vercel.app address to the real domain.
+  base_url: https://courtside-padel.vercel.app
   auth_endpoint: api/auth
 
 # Shows a "Open on site" preview link and loads the real site styles in the
 # CMS preview pane so the owner sees formatted output, not raw markdown.
-site_url: https://courtsidepadel.com
-display_url: https://courtsidepadel.com
+site_url: https://courtside-padel.vercel.app
+display_url: https://courtside-padel.vercel.app
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
@@ -172,7 +174,13 @@ collections:
       - label: "Body"
         name: "body"
         widget: "markdown"
-        hint: "Use ## for section headings — they automatically build the table of contents on the page."
+        hint: >-
+          Use ## for section headings — they automatically build the table of
+          contents on the page. To link to a tested product partway through
+          the article (the boxed "Read review" callout), put this on its own
+          line where you want it to appear: {{callout: racket-slug}} — the
+          slug is the racket's URL, e.g. {{callout: nox-at10-genius}} for
+          courtsidepadel.com/rackets/nox-at10-genius/.
 
   # -------------------------------------------------------------------
   # Sitewide settings — centralized affiliate link config.

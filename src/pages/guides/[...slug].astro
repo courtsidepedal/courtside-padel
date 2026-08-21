@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CourtLine from '../../components/CourtLine.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
+import AuthorByline from '../../components/AuthorByline.astro';
 
 export async function getStaticPaths() {
   const guides = await getCollection('guides', ({ data }) => !data.draft);
@@ -43,6 +44,10 @@ const { Content, headings } = await render(guide);
       <div class="prose">
         <Content />
       </div>
+    </div>
+
+    <div class="guide-byline">
+      <AuthorByline />
     </div>
   </article>
 </BaseLayout>
@@ -130,6 +135,99 @@ const { Content, headings } = await render(guide);
     text-decoration: underline;
   }
 
+  .prose :global(.inline-callout) {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--court);
+    padding: 18px 20px;
+    margin: 8px 0 24px;
+    color: var(--ink);
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .prose :global(.inline-callout:hover) {
+    border-left-color: var(--ink);
+  }
+
+  .prose :global(.ic-img) {
+    display: block;
+    width: 56px;
+    height: 56px;
+    background: var(--charcoal);
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .prose :global(.ic-img img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .prose :global(.ic-text) {
+    display: block;
+    font-size: 13px;
+    color: var(--muted-2);
+    line-height: 1.4;
+  }
+
+  .prose :global(.ic-text strong) {
+    display: block;
+    font-size: 14px;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .prose :global(.ic-link) {
+    margin-left: auto;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--court);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .prose :global(.inline-callout-error) {
+    background: #f7ece8;
+    border-left: 4px solid var(--court);
+    padding: 14px 18px;
+    margin: 8px 0 24px;
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  .prose :global(.inline-callout-error code) {
+    font-family: var(--font-mono);
+    background: rgba(0, 0, 0, 0.06);
+    padding: 2px 5px;
+  }
+
+  @media (max-width: 560px) {
+    .prose :global(.inline-callout) {
+      flex-wrap: wrap;
+    }
+
+    .prose :global(.ic-link) {
+      margin-left: 0;
+    }
+  }
+
+  .guide-byline {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 48px;
+    max-width: 900px;
+    margin: 8px auto 0;
+  }
+
+  .guide-byline > :global(*) {
+    grid-column: 2;
+  }
+
   @media (max-width: 760px) {
     .guide-layout {
       grid-template-columns: 1fr;
@@ -141,6 +239,14 @@ const { Content, headings } = await render(guide);
 
     .guide-head h1 {
       font-size: 34px;
+    }
+
+    .guide-byline {
+      grid-template-columns: 1fr;
+    }
+
+    .guide-byline > :global(*) {
+      grid-column: 1;
     }
   }
 </style>

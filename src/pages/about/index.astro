@@ -1,59 +1,304 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CourtLine from '../../components/CourtLine.astro';
+import { Image } from 'astro:assets';
+import authorPhoto from '../../assets/team/danish-malick.jpg';
+
+const stats = [
+  { num: '14', label: 'Rackets researched' },
+  { num: '50+', label: 'Owner reviews analyzed per racket' },
+  { num: '0', label: 'Manufacturer sponsorships' },
+];
+
+const steps = [
+  {
+    num: '01',
+    title: 'Manufacturer specs, verified',
+    body: 'We start with official specs, then cross-check them against independent sources rather than taking brand marketing at face value.',
+  },
+  {
+    num: '02',
+    title: 'Real owner feedback',
+    body: 'We read through verified buyer reviews and player forums to surface patterns — what real players consistently love or complain about.',
+  },
+  {
+    num: '03',
+    title: 'Expert & video reviews',
+    body: 'We factor in reviews from coaches and experienced players who have put hands-on time in, and note where sources disagree.',
+  },
+  {
+    num: '04',
+    title: 'Updated as new info emerges',
+    body: 'Scores and rankings get revisited as new reviews, price changes, or newer models come out — not left static once published.',
+  },
+];
 ---
 
 <BaseLayout
   title="About"
-  description="Courtside Padel is an independent padel gear review site — no manufacturer sponsorship, every racket and shoe tested hands-on."
+  description="Courtside Padel is an independent padel gear review site — no manufacturer sponsorship, every racket researched against verified owner reviews and expert sources."
 >
   <header class="page-head wrap">
-    <p class="eyebrow">About</p>
-    <h1>Independent, hands-on, no sponsorship</h1>
+    <p class="eyebrow">About us</p>
+    <h1>We do the research, so you don't have to gamble on a racket</h1>
+    <p class="intro">
+      Courtside Padel started because we were tired of "best racket" articles that were
+      just reworded spec sheets with no real comparison behind them — pages built to
+      rank, not to actually help someone choose.
+    </p>
   </header>
+
+  <section class="wrap">
+    <div class="stats-row">
+      {stats.map((stat) => (
+        <div class="stat">
+          <div class="num">{stat.num}</div>
+          <div class="label">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
 
   <CourtLine />
 
-  <section class="wrap prose">
-    <p>
-      Courtside Padel tests padel rackets, shoes, and gear against real players of every
-      level — beginner through advanced — so you don't have to gamble on a hunch before
-      you buy.
-    </p>
-    <p>
-      We earn a commission when you buy through some of the links on this site, at no
-      extra cost to you. That never changes what we recommend — see our
-      <a href="/affiliate-disclosure/">affiliate disclosure</a> for the full detail.
-    </p>
+  <section class="wrap">
+    <div class="section-narrow">
+      <p class="eyebrow">How we research</p>
+      <h2>Every racket earns its score</h2>
+    </div>
+    <div class="steps-grid">
+      {steps.map((step) => (
+        <div class="step">
+          <div class="step-num">{step.num}</div>
+          <h3>{step.title}</h3>
+          <p>{step.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="commitment">
+      <h3>Our commitment</h3>
+      <p>
+        We earn money through affiliate links — if you buy a racket through one of our
+        links, we may get a small commission at no extra cost to you.
+      </p>
+      <p>
+        That commission never determines a score. We've given low scores to rackets from
+        every major brand, including ones we're affiliated with. If a racket isn't good,
+        we say so. See our <a href="/affiliate-disclosure/">affiliate disclosure</a> for
+        the full detail.
+      </p>
+    </div>
+  </section>
+
+  <CourtLine />
+
+  <section class="wrap">
+    <div class="section-narrow">
+      <p class="eyebrow">Who's behind this</p>
+      <h2>Meet the editor</h2>
+    </div>
+    <div class="editor-bio">
+      <Image src={authorPhoto} alt="Danish Malick" width={110} height={110} class="editor-photo" />
+      <div>
+        <h3>Danish Malick</h3>
+        <p class="editor-role">Editor</p>
+        <p class="editor-text">
+          Graduate in Mass Communication with five years in the media industry,
+          specializing in voice-over production, automation workflows, and hands-on tech
+          reviews. Leads the research and editorial process behind every review on
+          Courtside Padel.
+        </p>
+      </div>
+    </div>
   </section>
 </BaseLayout>
 
 <style>
   .page-head {
     padding: 48px var(--gutter) 0;
+    max-width: 680px;
   }
 
   .page-head h1 {
     font-family: var(--font-display);
     font-size: 40px;
     text-transform: uppercase;
+    line-height: 1.05;
     margin-top: 12px;
-    max-width: 700px;
   }
 
-  .prose {
-    padding: 48px var(--gutter) 72px;
-    max-width: 720px;
+  .intro {
+    font-size: 17px;
+    color: var(--muted-2);
+    margin-top: 18px;
   }
 
-  .prose p {
-    margin-bottom: 16px;
-    font-size: 16px;
-    line-height: 1.6;
+  section {
+    padding: 40px var(--gutter);
   }
 
-  .prose a {
+  .section-narrow {
+    max-width: 640px;
+    margin-bottom: 24px;
+  }
+
+  .section-narrow h2 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    text-transform: uppercase;
+  }
+
+  /* ---- Stats row ---- */
+  .stats-row {
+    display: flex;
+    max-width: 760px;
+  }
+
+  .stat {
+    flex: 1;
+    padding: 24px 0 24px 24px;
+    border-left: 1px solid var(--line);
+  }
+
+  .stat:first-child {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .stat .num {
+    font-family: var(--font-display);
+    font-size: 36px;
     color: var(--court);
+  }
+
+  .stat .label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ---- How we research steps ---- */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 760px;
+  }
+
+  .step {
+    background: #fff;
+    border: 1px solid var(--line);
+    padding: 22px;
+  }
+
+  .step-num {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--ball);
+    -webkit-text-stroke: 1px var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .step h3 {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+
+  .step p {
+    font-size: 13px;
+    color: var(--muted-2);
+  }
+
+  /* ---- Commitment box ---- */
+  .commitment {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 36px;
+    max-width: 760px;
+  }
+
+  .commitment h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .commitment p {
+    font-size: 14px;
+    opacity: 0.85;
+    margin-bottom: 10px;
+  }
+
+  .commitment a {
+    color: var(--ball);
     text-decoration: underline;
+  }
+
+  /* ---- Meet the editor ---- */
+  .editor-bio {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    max-width: 640px;
+  }
+
+  .editor-bio :global(.editor-photo) {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .editor-bio h3 {
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+
+  .editor-role {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--court);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+
+  .editor-text {
+    font-size: 14px;
+    color: var(--muted-2);
+  }
+
+  @media (max-width: 620px) {
+    .steps-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stats-row {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .stat {
+      border-left: none;
+      padding-left: 0;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+
+    .stat:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .editor-bio {
+      flex-direction: column;
+    }
   }
 </style>

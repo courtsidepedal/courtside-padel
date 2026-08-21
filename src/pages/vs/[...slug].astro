@@ -3,6 +3,7 @@ import { getCollection, getEntry, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CourtLine from '../../components/CourtLine.astro';
 import AffiliateButton from '../../components/AffiliateButton.astro';
+import AuthorByline from '../../components/AuthorByline.astro';
 
 export async function getStaticPaths() {
   const comparisons = await getCollection('comparisons', ({ data }) => !data.draft);
@@ -116,6 +117,10 @@ const specLabels = [
           />
         </div>
       )}
+    </div>
+
+    <div class="cmp-byline">
+      <AuthorByline />
     </div>
   </article>
 </BaseLayout>
@@ -267,6 +272,11 @@ const specLabels = [
     font-size: 12px;
     color: var(--muted);
     margin-bottom: 8px;
+  }
+
+  .cmp-byline {
+    max-width: 720px;
+    margin: 40px auto 0;
   }
 
   @media (max-width: 700px) {

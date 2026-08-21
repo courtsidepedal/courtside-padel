@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# build-time bookkeeping — regenerated automatically, not real content
+public/images/uploads/.optimize-manifest.json

@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Content Manager — Courtside Padel</title>
     <meta name="robots" content="noindex,nofollow" />
+  </head>
+  <body>
     <!-- Keep this pinned to a specific version so a Decap CMS release never
          breaks the site owner's publishing flow without warning. Bump
-         deliberately and test in a preview deploy first. -->
+         deliberately and test in a preview deploy first.
+         Placed at the end of <body> (not <head>) so document.body exists
+         by the time the script runs — Decap CMS mounts itself into the
+         page immediately on load, without waiting for DOMContentLoaded. -->
     <script src="https://unpkg.com/decap-cms@^3.1.5/dist/decap-cms.js"></script>
-  </head>
-  <body></body>
+  </body>
 </html>

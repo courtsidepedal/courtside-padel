@@ -9,13 +9,13 @@ const { pros, cons } = Astro.props;
 
 <div class="pros-cons">
   <div class="col pros">
-    <div class="col-head">Pros</div>
+    <div class="col-head">What owners consistently praise</div>
     <ul>
       {pros.map((item) => <li>{item}</li>)}
     </ul>
   </div>
   <div class="col cons">
-    <div class="col-head">Cons</div>
+    <div class="col-head">What holds it back</div>
     <ul>
       {cons.map((item) => <li>{item}</li>)}
     </ul>

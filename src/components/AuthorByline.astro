@@ -1,0 +1,50 @@
+---
+// Single source of truth for the site's author byline, shown at the
+// bottom of every guide, review, and comparison page. There's currently
+// one editor for the whole site, so this is a static component rather
+// than a per-article CMS field — if a second contributor is ever added,
+// this is the place to turn `AUTHOR` into a prop instead of a constant.
+import { Image } from 'astro:assets';
+import authorPhoto from '../assets/team/danish-malick.jpg';
+
+const AUTHOR = {
+  name: 'Danish Malick',
+  role: 'Editor',
+};
+---
+
+<div class="author-box">
+  <Image src={authorPhoto} alt={AUTHOR.name} width={88} height={88} class="author-avatar" />
+  <div>
+    <div class="name">{AUTHOR.name}</div>
+    <div class="role">{AUTHOR.role}, Courtside Padel</div>
+  </div>
+</div>
+
+<style>
+  .author-box {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+
+  .author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .name {
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .role {
+    font-size: 12px;
+    color: var(--muted);
+  }
+</style>

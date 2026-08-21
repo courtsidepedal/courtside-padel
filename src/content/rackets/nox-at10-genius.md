@@ -2,45 +2,49 @@
 title: "Nox AT10 Genius"
 brand: "Nox"
 gearType: "racket"
-category: "Beginner"
-level: "Beginner"
+category: "All-round"
+level: "Advanced"
 homepageRank: 3
-price: "€169.90"
+price: "$270-300"
 image: "https://placehold.co/800x600/232019/FAF8F5?text=Nox+AT10+Genius"
 imageAlt: "Nox AT10 Genius padel racket"
-weight: "350-360g"
-balance: "Low"
-shape: "Round"
-bestFor: "New players"
+weight: "360-375g"
+balance: "Adjustable (2g/4g counterweight system)"
+shape: "Teardrop"
+bestFor: "Versatile all-round players who want pro-level tech and adjustable balance"
 prosCons:
   pros:
-    - "Light enough for a first few months without arm fatigue"
-    - "Very forgiving on mishits — the most common issue for new players"
-    - "Well priced without feeling like a toy"
+    - "Adjustable balance is a genuine differentiator — nothing else in this lineup lets you fine-tune weight distribution"
+    - "18K aluminized carbon face is consistently rated durable under heavy, frequent play"
+    - "Teardrop shape balances power and control better than a pure diamond, according to owner reviews"
   cons:
-    - "You'll likely outgrow it once your technique develops past 6-12 months"
-    - "Not enough power for players who already hit hard"
-verdict: "A genuinely good first racket — light, forgiving, and priced sensibly, without the compromises that make some 'beginner' rackets feel cheap."
-retailer: "padelandhelp"
-retailerProductPath: "/nox-at10-genius"
-metaDescription: "Nox AT10 Genius review: a light, low-balance round racket built for new padel players. Spec table, pros and cons, and our verdict."
+    - "Adjustable system adds cost — reviewers note simpler fixed-balance rackets exist for less"
+    - "Not a forgiving racket for new players despite the friendly-sounding name"
+verdict: "Agustín Tapia's own signature racket, and it plays like a pro tool — the adjustable counterweight system is the standout feature here, letting advanced players tune balance rather than being locked into one setup. This is not a beginner racket; treat the name as a model name, not a skill recommendation."
+retailer: "padelusa"
+retailerProductPath: "/products/nox-at10-genius-18k-alum-padel-racket"
+metaDescription: "Nox AT10 Genius review: Agustín Tapia's advanced signature racket with adjustable balance. Full spec table, pros and cons, and our verdict based on verified owner reviews and expert sources."
 publishDate: 2026-01-25
 draft: false
 ---
 
 ## First impressions
 
-Low balance and light overall weight make the AT10 Genius easy to control from the
-first session, which matters more than raw power when you're still learning where the
-ball is going to go.
+Despite the name suggesting an entry-level racket, the AT10 Genius is Agustín Tapia's
+professional signature model — an 18K aluminized carbon teardrop built for players who
+already know what they want from a racket, not players still figuring that out.
 
 ## On court
 
-The forgiving sweet spot means the mishits that are inevitable in your first months on
-court don't sting your arm or send the ball into the fence. It won't keep up with an
-aggressive attacking style, but that's not the point of a first racket.
+The standout feature, according to owner reviews, is the adjustable 2g/4g counterweight
+system — a genuine rarity even among advanced rackets, letting players shift balance
+toward power or control without buying a second racket. The teardrop shape spreads the
+sweet spot wider than a pure diamond shape, so it rewards clean technique without
+punishing every mishit as harshly.
 
 ## Who it's for
 
-Brand new players, or anyone stepping up from a basic starter-kit racket who wants
-something that will actually help them learn technique rather than fight it.
+Advanced and upper-intermediate players who want a single racket that adapts to
+different match situations, or anyone specifically drawn to the adjustable-balance
+feature. Not a starting racket — beginners should look at a lighter, fixed low-balance
+racket instead.

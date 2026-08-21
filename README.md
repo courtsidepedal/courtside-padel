@@ -16,6 +16,7 @@ content managed through Decap CMS, deployed on Vercel.
 src/
   components/       Reusable UI: Nav, CourtLine, RacketCard, SpecTable, etc.
   layouts/          BaseLayout.astro — shared <head>, nav, footer
+  lib/              Build-time helpers, e.g. the {{callout: slug}} remark plugin
   content/          Markdown content — rackets/, comparisons/, guides/
   content.config.ts Content collection schemas (the CMS mirrors this)
   data/
@@ -27,13 +28,15 @@ src/
     shoes/              Shoe hub page (shares the rackets template)
     vs/                 Comparison template + hub page
     guides/             Guide template + hub page
-    about/, contact/, affiliate-disclosure/
+    about/, contact/, affiliate-disclosure/, privacy-policy/
 public/
   admin/            Decap CMS config and entry point
+scripts/
+  optimize-images.mjs  Resizes/recompresses CMS uploads on every build (prebuild step)
 api/
   auth.js, callback.js   GitHub OAuth handshake for the CMS login (Vercel functions)
 docs/
-  cms-setup.md          One-time developer setup: GitHub, Vercel, OAuth
+  cms-setup.md          One-time developer setup: GitHub, Vercel, OAuth, Formspree
   publishing-guide.md   How the site owner publishes content — no code
 ```
 
@@ -57,6 +60,14 @@ auto-deploys.
 Content is just markdown with frontmatter in `src/content/{rackets,comparisons,guides}/`.
 You can add or edit files directly and push — the CMS and direct file edits
 both work against the same files, so nothing is CMS-locked.
+
+Inside a guide's body, `{{callout: racket-slug}}` on its own line renders an
+inline "Read review" product callout pulling live data from that racket's
+review — see `src/lib/remark-product-callout.mjs`. This only works with
+plain markdown (`.md`) content; if this project ever migrates guides to
+`.mdx`, that plugin's approach (reading frontmatter off disk directly,
+because Astro's `<Content components={...} />` override only applies to
+`.mdx` files) should be revisited in favor of a real component import.
 
 ## Design reference
 

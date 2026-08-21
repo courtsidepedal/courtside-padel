@@ -2,6 +2,8 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
+import { unified } from '@astrojs/markdown-remark';
+import remarkProductCallout from './src/lib/remark-product-callout.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -10,4 +12,9 @@ export default defineConfig({
   output: 'static',
   adapter: vercel(),
   integrations: [sitemap()],
+  markdown: {
+    // Powers the {{callout: racket-slug}} inline product callout syntax
+    // available inside guide articles — see src/lib/remark-product-callout.mjs.
+    processor: unified({ remarkPlugins: [remarkProductCallout] }),
+  },
 });

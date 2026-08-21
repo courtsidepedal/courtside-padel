@@ -6,6 +6,7 @@ import SpecTable from '../../components/SpecTable.astro';
 import ProsCons from '../../components/ProsCons.astro';
 import AffiliateButton from '../../components/AffiliateButton.astro';
 import RacketCard from '../../components/RacketCard.astro';
+import AuthorByline from '../../components/AuthorByline.astro';
 
 export async function getStaticPaths() {
   const rackets = await getCollection('rackets', ({ data }) => !data.draft);
@@ -96,6 +97,10 @@ if (racket.data.relatedComparisons?.length) {
         </section>
       </>
     )}
+
+    <div class="review-byline">
+      <AuthorByline />
+    </div>
   </article>
 </BaseLayout>
 
@@ -201,6 +206,12 @@ if (racket.data.relatedComparisons?.length) {
 
   .related a:hover {
     color: var(--court);
+  }
+
+  .review-byline {
+    max-width: 720px;
+    margin: 0 auto;
+    padding-bottom: 16px;
   }
 
   @media (max-width: 800px) {

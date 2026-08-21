@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CourtLine from '../../components/CourtLine.astro';
+
+const updated = 'August 2026';
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description="What information Courtside Padel collects when you visit the site, how it's used, and what choices you have."
+>
+  <header class="page-head wrap">
+    <p class="eyebrow">Legal</p>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: {updated}</p>
+  </header>
+
+  <CourtLine />
+
+  <section class="wrap prose">
+    <p>
+      This policy explains what information Courtside Padel collects when you visit
+      this site, how it's used, and what choices you have.
+    </p>
+
+    <div class="callout">
+      We don't sell your personal data. This site primarily uses standard analytics
+      and affiliate tracking, similar to most content websites.
+    </div>
+
+    <h2>Information we collect</h2>
+    <ul>
+      <li>
+        <strong>Automatically:</strong> pages visited, browser and device type,
+        approximate location (via IP), and general usage patterns, collected through
+        analytics tools.
+      </li>
+      <li>
+        <strong>Cookies:</strong> used for analytics, remembering preferences, and
+        tracking affiliate referrals so partner programs can credit us correctly.
+      </li>
+      <li>
+        <strong>Voluntarily provided:</strong> if you use our contact form, we collect
+        the name, email, and message you submit.
+      </li>
+    </ul>
+
+    <h2>How we use this information</h2>
+    <ul>
+      <li>To understand which content is useful and improve the site</li>
+      <li>To respond to messages sent through the contact form</li>
+      <li>To track affiliate referrals for commission purposes</li>
+    </ul>
+
+    <h2>Affiliate links and third parties</h2>
+    <p>
+      This site contains affiliate links to retailers such as PadelNuestro, Casas
+      Padel, and Padel And Help. When you click these links, the destination site's
+      own privacy policy applies to any data they collect from that point forward —
+      we don't control or receive personal data from those transactions.
+    </p>
+
+    <h2>Your choices</h2>
+    <p>
+      You can disable cookies through your browser settings at any time. Doing so may
+      affect how some features of the site work, but the site will remain accessible.
+    </p>
+
+    <h2>Changes to this policy</h2>
+    <p>
+      We may update this policy as the site evolves. Material changes will be
+      reflected by updating the date at the top of this page.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Questions about this policy can be sent to
+      <a href="mailto:hello@courtsidepadel.com">hello@courtsidepadel.com</a>.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding: 48px var(--gutter) 0;
+  }
+
+  .page-head h1 {
+    font-family: var(--font-display);
+    font-size: 40px;
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+
+  .updated {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted-3);
+    margin-top: 14px;
+  }
+
+  .prose {
+    padding: 48px var(--gutter) 72px;
+    max-width: 720px;
+  }
+
+  .prose p {
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .prose ul {
+    margin: 0 0 20px 4px;
+  }
+
+  .prose li {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .prose li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    background: var(--court);
+  }
+
+  .prose h2 {
+    font-family: var(--font-display);
+    font-size: 19px;
+    text-transform: uppercase;
+    margin: 32px 0 12px;
+  }
+
+  .prose a {
+    color: var(--court);
+    text-decoration: underline;
+  }
+
+  .callout {
+    background: #fff;
+    border-left: 4px solid var(--court);
+    padding: 18px 20px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+</style>

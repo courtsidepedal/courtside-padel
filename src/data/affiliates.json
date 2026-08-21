@@ -17,6 +17,12 @@
       "name": "Padel And Help",
       "baseUrl": "https://www.padelandhelp.com",
       "affiliateQuery": "?utm_source=courtsidepadel"
+    },
+    {
+      "id": "padelusa",
+      "name": "Padel USA",
+      "baseUrl": "https://padelusa.com",
+      "affiliateQuery": ""
     }
   ]
 }
