@@ -32,7 +32,8 @@ relatedComparisons:
 metaDescription: "Bullpadel Vertex 04 review: full spec breakdown, pros and
   cons, and our verdict based on verified owner reviews and expert sources on
   this diamond-shaped power racket."
-publishDate: 2026-01-15
+publishDate: 2026-01-15T00:00:00.000+05:00
+updatedDate: 2026-08-22T10:33:00.000+05:00
 draft: false
 ---
 
