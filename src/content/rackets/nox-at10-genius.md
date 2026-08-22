@@ -35,6 +35,7 @@ metaDescription: "Nox AT10 Genius review: Agustín Tapia's advanced signature
   racket with adjustable balance. Full spec table, pros and cons, and our
   verdict based on verified owner reviews and expert sources."
 publishDate: 2026-01-25
+updatedDate: 2026-08-22T10:34:00.000+05:00
 draft: false
 ---
 
