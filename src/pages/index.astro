@@ -134,7 +134,7 @@ const featuredGuides = allGuides
       });
       const result = await response.json();
       if (result.success) {
-        form.setAttribute('hidden', 'true');
+        (form as HTMLElement).style.display = 'none';
         successMsg?.removeAttribute('hidden');
       } else if (button) {
         button.textContent = 'Notify me';
