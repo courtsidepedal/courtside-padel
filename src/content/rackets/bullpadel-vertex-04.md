@@ -28,6 +28,8 @@ verdict: Consistently rated the hardest-hitting racket in its class by owners
 retailers:
   - retailer: padelusa
     retailerProductPath: /products/bullpadel-vertex-04-2025-juan-tello-padel-racket
+  - retailer: padelnuestro
+    retailerProductPath: /bullpadel-vertex-04
 relatedComparisons:
   - bullpadel-vertex-04-vs-head-speed-pro-2025
 metaDescription: "Bullpadel Vertex 04 review: full spec breakdown, pros and
