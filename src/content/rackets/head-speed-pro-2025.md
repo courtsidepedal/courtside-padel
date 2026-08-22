@@ -32,6 +32,8 @@ verdict: A genuine hybrid — the teardrop shape and Auxetic 2.0 construction gi
 retailers:
   - retailer: padelusa
     retailerProductPath: /products/head-speed-pro-2025-padel-racket
+  - retailer: padelnuestro
+    retailerProductPath: /head-speed-pro-2025
 relatedComparisons:
   - bullpadel-vertex-04-vs-head-speed-pro-2025
 metaDescription: "Head Speed Pro 2025 review: a teardrop-shaped
