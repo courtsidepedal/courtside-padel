@@ -7,7 +7,7 @@ level: Beginner
 price: $85
 image: https://placehold.co/800x600/232019/FAF8F5?text=Adidas+Courtjam+Bounce
 imageAlt: Adidas Courtjam Bounce padel shoe
-weight: Lightweight (exact weight varies by size)
+weight: Lightweight
 balance: Bounce midsole cushioning
 shape: Herringbone / Adiwear outsole
 bestFor: Beginners and recreational players who want comfort without overpaying
