@@ -19,6 +19,13 @@ export async function getStaticPaths() {
 const { racket } = Astro.props;
 const { Content, headings } = await render(racket);
 
+const displayDate = racket.data.updatedDate ?? racket.data.publishDate;
+const formattedDate = displayDate.toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
 const specRows = [
   { label: 'Price', value: racket.data.price },
   racket.data.weight && { label: 'Weight', value: racket.data.weight },
@@ -47,6 +54,7 @@ if (racket.data.relatedComparisons?.length) {
       <p class="eyebrow">{racket.data.category} &middot; {racket.data.level} review</p>
       <h1>{racket.data.title}</h1>
       <p class="brand">by {racket.data.brand}</p>
+      <p class="last-updated">Last updated {formattedDate}</p>
     </header>
 
     <div class="review-top">
@@ -126,6 +134,15 @@ if (racket.data.relatedComparisons?.length) {
     color: var(--muted);
     margin-top: 10px;
     font-size: 15px;
+  }
+
+  .last-updated {
+    font-family: var(--font-mono);
+    color: var(--muted-3);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 6px;
   }
 
   .review-top {
