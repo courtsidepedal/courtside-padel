@@ -1,31 +1,41 @@
 ---
-title: "Head Speed Pro 2025"
-brand: "Head"
-gearType: "racket"
-category: "Power & Control"
-level: "Advanced"
+title: Head Speed Pro 2025
+brand: Head
+gearType: racket
+category: Power & Control
+level: Advanced
 homepageRank: 2
-price: "$230-260"
-image: "https://placehold.co/800x600/232019/FAF8F5?text=Head+Speed+Pro+2025"
-imageAlt: "Head Speed Pro 2025 padel racket"
-weight: "370g"
-balance: "Neutral to head-heavy (high)"
-shape: "Teardrop"
-bestFor: "All-round offensive players wanting power and control, not just pure smashers"
+price: $230-260
+image: https://placehold.co/800x600/232019/FAF8F5?text=Head+Speed+Pro+2025
+imageAlt: Head Speed Pro 2025 padel racket
+weight: 370g
+balance: Neutral to head-heavy (high)
+shape: Teardrop
+bestFor: Offensive all-rounders who want power without giving up control
 prosCons:
   pros:
-    - "Teardrop shape hits nearly as hard as a diamond racket but is noticeably more forgiving on off-centre contact, per owner reviews"
-    - "Auxetic 2.0 construction is repeatedly praised for a softer, more comfortable feel at impact"
-    - "Hybrid carbon-fibreglass face holds up well under frequent play, according to reviewers"
+    - Teardrop shape hits nearly as hard as a diamond racket but is noticeably
+      more forgiving on off-centre contact, per owner reviews
+    - Auxetic 2.0 construction is repeatedly praised for a softer, more
+      comfortable feel at impact
+    - Hybrid carbon-fibreglass face holds up well under frequent play, according
+      to reviewers
   cons:
-    - "Head-heavy balance takes some adjustment if you're coming from a lower-balance racket"
-    - "Priced at the upper end for a racket that isn't a pure specialist in either power or control"
-verdict: "A genuine hybrid — the teardrop shape and Auxetic 2.0 construction give it real smash power without the unforgiving nature of a pure diamond racket. Reviewers consistently point to it as the pick for attacking players who don't want to sacrifice all their margin for error."
-retailer: "padelusa"
-retailerProductPath: "/products/head-speed-pro-2025-padel-racket"
+    - Head-heavy balance takes some adjustment if you're coming from a
+      lower-balance racket
+    - Priced at the upper end for a racket that isn't a pure specialist in
+      either power or control
+verdict: A genuine hybrid — the teardrop shape and Auxetic 2.0 construction give
+  it real smash power without the unforgiving nature of a pure diamond racket.
+  Reviewers consistently point to it as the pick for attacking players who don't
+  want to sacrifice all their margin for error.
+retailer: padelusa
+retailerProductPath: /products/head-speed-pro-2025-padel-racket
 relatedComparisons:
-  - "bullpadel-vertex-04-vs-head-speed-pro-2025"
-metaDescription: "Head Speed Pro 2025 review: a teardrop-shaped power-and-control hybrid racket. Full spec table, pros and cons, and our verdict based on verified owner reviews and expert sources."
+  - bullpadel-vertex-04-vs-head-speed-pro-2025
+metaDescription: "Head Speed Pro 2025 review: a teardrop-shaped
+  power-and-control hybrid racket. Full spec table, pros and cons, and our
+  verdict based on verified owner reviews and expert sources."
 publishDate: 2026-01-20
 draft: false
 ---
