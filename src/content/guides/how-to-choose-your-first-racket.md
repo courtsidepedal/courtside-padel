@@ -33,3 +33,8 @@ the benefit of for a year or more.
 
 A round-shaped, low-balance racket in the €120-180 range is the sweet spot for a first
 "real" racket, once you've outgrown a basic starter set.
+
+Our current lineup is Advanced-focused, so none of our reviews are aimed at a first
+racket just yet — but the same research approach will apply once we cover beginner
+picks. In the meantime, [see our full rankings](/rackets/) to get a feel for what's out
+there, or check back soon as we add more entry-level reviews.
