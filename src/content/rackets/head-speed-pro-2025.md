@@ -37,6 +37,7 @@ metaDescription: "Head Speed Pro 2025 review: a teardrop-shaped
   power-and-control hybrid racket. Full spec table, pros and cons, and our
   verdict based on verified owner reviews and expert sources."
 publishDate: 2026-01-20
+updatedDate: 2026-08-22T10:33:00.000+05:00
 draft: false
 ---
 
