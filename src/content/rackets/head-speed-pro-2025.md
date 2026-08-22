@@ -29,8 +29,9 @@ verdict: A genuine hybrid — the teardrop shape and Auxetic 2.0 construction gi
   it real smash power without the unforgiving nature of a pure diamond racket.
   Reviewers consistently point to it as the pick for attacking players who don't
   want to sacrifice all their margin for error.
-retailer: padelusa
-retailerProductPath: /products/head-speed-pro-2025-padel-racket
+retailers:
+  - retailer: padelusa
+    retailerProductPath: /products/head-speed-pro-2025-padel-racket
 relatedComparisons:
   - bullpadel-vertex-04-vs-head-speed-pro-2025
 metaDescription: "Head Speed Pro 2025 review: a teardrop-shaped

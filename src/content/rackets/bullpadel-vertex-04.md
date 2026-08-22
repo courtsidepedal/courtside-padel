@@ -25,8 +25,9 @@ verdict: Consistently rated the hardest-hitting racket in its class by owners
   and coaches we researched — brutal on smashes, unforgiving if your technique
   isn't there yet. Not a racket for beginners, but if you already generate your
   own power, nothing else in this price range hits harder.
-retailer: padelusa
-retailerProductPath: /products/bullpadel-vertex-04-2025-juan-tello-padel-racket
+retailers:
+  - retailer: padelusa
+    retailerProductPath: /products/bullpadel-vertex-04-2025-juan-tello-padel-racket
 relatedComparisons:
   - bullpadel-vertex-04-vs-head-speed-pro-2025
 metaDescription: "Bullpadel Vertex 04 review: full spec breakdown, pros and
