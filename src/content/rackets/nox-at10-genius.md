@@ -32,6 +32,8 @@ verdict: Agustín Tapia's own signature racket, and it plays like a pro tool —
 retailers:
   - retailer: padelusa
     retailerProductPath: /products/nox-at10-genius-18k-alum-padel-racket
+  - retailer: padelnuestro
+    retailerProductPath: /head-speed-pro-2025
 metaDescription: "Nox AT10 Genius review: Agustín Tapia's advanced signature
   racket with adjustable balance. Full spec table, pros and cons, and our
   verdict based on verified owner reviews and expert sources."
