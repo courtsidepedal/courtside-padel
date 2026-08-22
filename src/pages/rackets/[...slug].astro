@@ -63,11 +63,15 @@ if (racket.data.relatedComparisons?.length) {
       </div>
       <div class="review-top-side">
         <SpecTable rows={specRows} title="At a glance" />
-        <AffiliateButton
-          retailer={racket.data.retailer}
-          productPath={racket.data.retailerProductPath}
-          price={racket.data.price}
-        />
+        <div class="affiliate-links">
+          {racket.data.retailers.map((r) => (
+            <AffiliateButton
+              retailer={r.retailer}
+              productPath={r.retailerProductPath}
+              price={racket.data.price}
+            />
+          ))}
+        </div>
       </div>
     </div>
 
@@ -85,11 +89,15 @@ if (racket.data.relatedComparisons?.length) {
 
       <ProsCons pros={racket.data.prosCons.pros} cons={racket.data.prosCons.cons} />
 
-      <AffiliateButton
-        retailer={racket.data.retailer}
-        productPath={racket.data.retailerProductPath}
-        price={racket.data.price}
-      />
+      <div class="affiliate-links">
+        {racket.data.retailers.map((r) => (
+          <AffiliateButton
+            retailer={r.retailer}
+            productPath={r.retailerProductPath}
+            price={racket.data.price}
+          />
+        ))}
+      </div>
     </div>
 
     {relatedComparisons.length > 0 && (
@@ -168,6 +176,12 @@ if (racket.data.relatedComparisons?.length) {
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+
+  .affiliate-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .review-body {

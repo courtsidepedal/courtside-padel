@@ -30,11 +30,19 @@ const rackets = defineCollection({
     verdict: z.string(),
 
     // Centralized affiliate linking — see src/data/affiliates.json.
-    // retailer must match an id in that file; retailerProductPath is
-    // appended to the retailer's base URL. Changing a program's base
+    // Each entry's "retailer" must match an id in that file; "productPath"
+    // is appended to that retailer's base URL. Changing a program's base
     // URL only ever happens in affiliates.json, never per article.
-    retailer: z.string(),
-    retailerProductPath: z.string(),
+    // A racket can link to more than one retailer — the list renders as
+    // multiple "Check price at X" buttons, in the order given here.
+    retailers: z
+      .array(
+        z.object({
+          retailer: z.string(),
+          retailerProductPath: z.string(),
+        })
+      )
+      .min(1),
 
     relatedComparisons: z.array(reference('comparisons')).optional(),
 

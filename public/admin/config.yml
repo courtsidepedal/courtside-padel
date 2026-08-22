@@ -70,15 +70,21 @@ collections:
           - { label: "Pros", name: "pros", widget: "list", field: { label: "Pro", name: "item", widget: "string" } }
           - { label: "Cons", name: "cons", widget: "list", field: { label: "Con", name: "item", widget: "string" } }
       - { label: "Verdict", name: "verdict", widget: "text", hint: "One or two sentence summary shown in a highlighted callout." }
-      - label: "Retailer"
-        name: "retailer"
-        widget: "select"
-        options: ["padelnuestro", "casaspadel", "padelandhelp"]
-        hint: "The retailer this product links to. Base URLs live in Settings → Affiliate Retailers — never hardcode a full URL here."
-      - label: "Retailer product path"
-        name: "retailerProductPath"
-        widget: "string"
-        hint: "Just the product's path on the retailer's site, e.g. /bullpadel-vertex-04"
+      - label: "Retailer links"
+        name: "retailers"
+        widget: "list"
+        summary: "{{fields.retailer}}"
+        hint: "Add one entry per retailer this product should link to. The first one shown here becomes the main 'Check price' button; any others appear as extra options."
+        fields:
+          - label: "Retailer"
+            name: "retailer"
+            widget: "select"
+            options: ["padelnuestro", "casaspadel", "padelandhelp", "padelusa"]
+            hint: "The retailer this link points to. Base URLs live in Settings → Affiliate Retailers — never hardcode a full URL here."
+          - label: "Retailer product path"
+            name: "retailerProductPath"
+            widget: "string"
+            hint: "Just the product's path on the retailer's site, e.g. /bullpadel-vertex-04"
       - label: "Related comparisons"
         name: "relatedComparisons"
         widget: "relation"
